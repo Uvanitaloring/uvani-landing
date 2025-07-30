@@ -1,4 +1,4 @@
-import { Gem, Award, Home } from 'lucide-react';
+import { Gem, Award, Home, UserCheck } from 'lucide-react';
 
 const benefits = [
   {
@@ -16,6 +16,11 @@ const benefits = [
     title: 'At-Home Convenience',
     description: 'We bring our expert tailoring services directly to your doorstep, saving you time and hassle.',
   },
+  {
+    icon: UserCheck,
+    title: 'Personalized Fit',
+    description: 'We go beyond alterations to ensure your garment complements your unique style and physique perfectly.',
+  },
 ];
 
 export function WhyChooseUs() {
@@ -25,7 +30,7 @@ export function WhyChooseUs() {
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">The Couture Clickk <span className="text-primary">Promise</span></h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
           {benefits.map((benefit) => (
             <div key={benefit.title} className="flex flex-col items-center p-6">
               <div className="flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
