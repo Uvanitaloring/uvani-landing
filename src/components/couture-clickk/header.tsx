@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const Logo = () => (
   <svg
@@ -91,23 +92,32 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled || isOpen ? 'bg-white shadow-md' : 'bg-transparent'
-      }`}
+      )}
     >
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
+        <div
+          className={cn(
+            'flex justify-between items-center transition-all duration-300',
+            isScrolled ? 'h-16' : 'h-24'
+          )}
+        >
           <Link href="/">
             <Logo />
           </Link>
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-body font-bold text-sm tracking-widest uppercase transition-colors ${
-                  isScrolled || isOpen ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary/80'
-                }`}
+                className={cn(
+                  'font-body font-bold text-sm tracking-widest uppercase transition-colors',
+                  isScrolled || isOpen
+                    ? 'text-gray-800 hover:text-primary'
+                    : 'text-white hover:text-primary/80'
+                )}
               >
                 {link.label}
               </Link>
@@ -118,9 +128,10 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className={`${
+              className={cn(
+                'hover:bg-transparent',
                 isScrolled || isOpen ? 'text-gray-800' : 'text-white'
-              } hover:bg-transparent`}
+              )}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               <span className="sr-only">Toggle menu</span>
