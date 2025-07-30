@@ -1,4 +1,7 @@
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 export function About() {
   return (
@@ -24,6 +27,13 @@ export function About() {
             <p className="font-body text-muted-foreground mt-4">
               We source the world's finest materials to ensure every piece feels as exquisite as it looks. Our designs are exclusive, created for the discerning individual who values sophistication, craftsmanship, and the allure of the unique. Welcome to a world where every detail matters.
             </p>
+            <div className="mt-8">
+              <Link href="#contact">
+                <Button size="lg">
+                  Contact Us <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

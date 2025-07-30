@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Shirt, Ruler, Scissors, ShoppingBag } from 'lucide-react';
+import { Shirt, Ruler, Scissors, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const services = [
   {
@@ -63,6 +65,13 @@ export function Services() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="text-center mt-16">
+          <Link href="#contact">
+            <Button size="lg">
+              Get In Touch <ArrowRight className="ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
