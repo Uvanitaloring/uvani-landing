@@ -1,5 +1,6 @@
 import { About } from '@/components/couture-clickk/about';
 import { AnimateWrapper } from '@/components/couture-clickk/animate-wrapper';
+import { Contact } from '@/components/couture-clickk/contact';
 import { Header } from '@/components/couture-clickk/header';
 import { Hero } from '@/components/couture-clickk/hero';
 import { HowWeWork } from '@/components/couture-clickk/how-we-work';
@@ -30,6 +31,9 @@ export default function CoutureClickkLandingPage() {
         <Testimonials />
         <AnimateWrapper>
           <InstagramGallery />
+        </AnimateWrapper>
+        <AnimateWrapper>
+          <Contact />
         </AnimateWrapper>
         <AnimateWrapper>
           <Subscribe />
