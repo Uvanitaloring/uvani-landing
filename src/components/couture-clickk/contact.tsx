@@ -56,10 +56,10 @@ export function Contact() {
             <h3 className="font-headline text-3xl font-bold mb-6 text-center text-primary">Send Us Your Details</h3>
             <form className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <Input type="text" placeholder="Shubham Choudhary" />
+                <Input type="text" placeholder="Name" />
                 <Input type="email" placeholder="Email Address" />
-                <Input type="tel" placeholder="09474160518" />
-                <Input type="text" placeholder="Magadh Colony" />
+                <Input type="tel" placeholder="Phone Number" />
+                <Input type="text" placeholder="Address" />
               </div>
               <Textarea placeholder="Your Message" rows={5} />
               <Button type="submit" size="lg" className="w-full">
