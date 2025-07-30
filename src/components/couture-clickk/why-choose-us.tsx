@@ -1,4 +1,4 @@
-import { Gem, Award, Globe } from 'lucide-react';
+import { Gem, Award, Home } from 'lucide-react';
 
 const benefits = [
   {
@@ -12,9 +12,9 @@ const benefits = [
     description: 'Our limited-run collections ensure you own a unique piece of fashion history.',
   },
   {
-    icon: Globe,
-    title: 'Worldwide Free Shipping',
-    description: 'Enjoy complimentary, insured shipping to your doorstep, wherever you are.',
+    icon: Home,
+    title: 'At-Home Convenience',
+    description: 'We bring our expert tailoring services directly to your doorstep, saving you time and hassle.',
   },
 ];
 
