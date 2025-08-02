@@ -74,56 +74,56 @@ export function Footer() {
              <Link href="/">
                 <Logo />
              </Link>
-            <p className="text-muted-foreground mt-4 font-body text-sm">
+            <p className="text-purple-200/90 mt-4 font-body text-sm">
               Couture Clickk is your premier destination for high-end fashion alterations, blending traditional craftsmanship with modern convenience.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-headline text-lg font-bold mb-4">Quick Links</h3>
+            <h3 className="font-headline text-lg font-bold mb-4 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-600 bg-clip-text text-transparent">Quick Links</h3>
             <ul className="space-y-2 font-body text-sm">
-              <li><Link href="#about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="#services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link></li>
-              <li><Link href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">How We Work</Link></li>
-              <li><Link href="#collection" className="text-muted-foreground hover:text-primary transition-colors">Collection</Link></li>
+              <li><Link href="#about" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">About Us</Link></li>
+              <li><Link href="#services" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Services</Link></li>
+              <li><Link href="#how-it-works" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">How We Work</Link></li>
+              <li><Link href="#collection" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Collection</Link></li>
             </ul>
           </div>
 
           {/* Support */}
           <div>
-            <h3 className="font-headline text-lg font-bold mb-4">Support</h3>
+            <h3 className="font-headline text-lg font-bold mb-4 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-600 bg-clip-text text-transparent">Support</h3>
             <ul className="space-y-2 font-body text-sm">
-              <li><Link href="#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact Us</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
+              <li><Link href="#contact" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Contact Us</Link></li>
+              <li><Link href="#" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">FAQ</Link></li>
+              <li><Link href="#" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Privacy Policy</Link></li>
+              <li><Link href="#" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Terms of Service</Link></li>
             </ul>
           </div>
 
           {/* Social */}
           <div>
-            <h3 className="font-headline text-lg font-bold mb-4">Follow Us</h3>
+            <h3 className="font-headline text-lg font-bold mb-4 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-600 bg-clip-text text-transparent">Follow Us</h3>
             <div className="flex gap-4">
               <Link href="#" aria-label="Instagram">
-                <Instagram className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                <Instagram className="h-6 w-6 text-purple-200/80 hover:text-amber-300 transition-colors" />
               </Link>
               <Link href="#" aria-label="Facebook">
-                <Facebook className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                <Facebook className="h-6 w-6 text-purple-200/80 hover:text-amber-300 transition-colors" />
               </Link>
               <Link href="#" aria-label="Twitter">
-                <Twitter className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                <Twitter className="h-6 w-6 text-purple-200/80 hover:text-amber-300 transition-colors" />
               </Link>
                <Link href="#" aria-label="Youtube">
-                <Youtube className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                <Youtube className="h-6 w-6 text-purple-200/80 hover:text-amber-300 transition-colors" />
               </Link>
               <Link href="#" aria-label="LinkedIn">
-                <Linkedin className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                <Linkedin className="h-6 w-6 text-purple-200/80 hover:text-amber-300 transition-colors" />
               </Link>
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground font-body">
+        <div className="mt-12 border-t pt-8 text-center text-sm text-purple-200/60 font-body">
           <p>&copy; {new Date().getFullYear()} Couture Clickk. All Rights Reserved.</p>
         </div>
       </div>
