@@ -1,161 +1,216 @@
-
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
+// --- Re-usable Animation Variants ---
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+// --- Custom Animated Hamburger Icon ---
+const AnimatedHamburgerIcon = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => {
+  const path01Controls = useAnimation();
+  const path02Controls = useAnimation();
+
+  useEffect(() => {
+    if (isOpen) {
+      path01Controls.start({ d: "M 3 2.5 L 17 16.5" });
+      path02Controls.start({ d: "M 3 16.5 L 17 2.5" });
+    } else {
+      path01Controls.start({ d: "M 2 5 L 18 5" });
+      path02Controls.start({ d: "M 2 15 L 18 15" });
+    }
+  }, [isOpen, path01Controls, path02Controls]);
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={onClick}
+      className="hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+      aria-label="Toggle Menu"
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" className="stroke-current">
+        <motion.path
+          strokeWidth="2"
+          strokeLinecap="round"
+          animate={path01Controls}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        />
+        <motion.path
+          strokeWidth="2"
+          strokeLinecap="round"
+          animate={path02Controls}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        />
+      </svg>
+    </Button>
+  );
+};
+
+
+// --- Refined Logo Component ---
 const Logo = () => (
-  <svg
-    width="200"
-    height="60"
-    viewBox="0 0 258 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-12 w-auto"
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
   >
-    <path
-      d="M106.828 68.9953C122.924 64.9124 135.98 52.8804 141.516 38.3188C142.923 34.4696 143.511 30.3423 143.28 26.2307C142.712 16.2941 137.953 7.37191 130.344 1.70659C128.423 0.121591 126.13 -0.372559 123.822 0.245891C112.592 3.93119 104.936 14.074 103.529 25.6881C102.585 33.7258 105.074 41.8384 109.919 47.795C110.238 48.1883 110.569 48.5721 110.893 48.9634C111.025 49.1235 111.161 49.2801 111.291 49.442C100.864 54.4923 91.2483 58.0772 80.9507 62.7758C70.613 67.4921 60.7981 70.9999 50.1171 70.9999C36.8164 70.9999 24.3157 66.8643 14.8018 59.8652C5.28789 52.866 0 43.6231 0 33.3752C0 23.1273 5.28789 13.8844 14.8018 6.88525C24.3157 -0.113892 36.8164 -4.24941 50.1171 -4.24941C61.4328 -4.24941 72.015 -1.53779 80.6872 3.65016C82.0163 4.29336 83.1613 5.38171 83.899 6.74542C84.6367 8.10912 84.9317 9.66442 84.7381 11.201C84.1873 15.6593 81.4283 19.6675 77.4235 22.0945C75.0531 23.5517 72.3274 24.1169 69.658 23.6826C65.3353 23.0039 61.5908 20.3248 59.5442 16.518C57.9715 13.5658 58.5594 9.98098 60.9855 7.62174C61.3578 7.26034 61.7618 6.93294 62.1915 6.63464C58.5461 5.37894 54.4842 4.75049 50.1171 4.75049C39.4361 4.75049 29.8732 8.35304 23.5132 14.512C17.1532 20.671 13.7933 29.626 13.7933 39.021C13.7933 48.416 17.1532 57.3709 23.5132 63.5299C29.8732 69.6889 39.4361 73.2915 50.1171 73.2915C60.8381 73.2915 70.4795 69.9143 79.9934 64.2141L80.9507 62.7758C81.8845 61.328 82.3565 59.6455 82.2885 57.9478C81.8239 46.9477 87.0519 36.6669 95.8913 29.9881C99.7393 27.0863 104.28 25.2933 109.116 24.8703C115.823 24.284 122.399 26.6083 127.135 31.096C130.641 34.4234 132.887 38.8028 133.438 43.5134C134.025 48.5173 132.74 53.512 129.876 57.5657L129.278 58.384C128.892 58.9482 128.435 59.4674 127.915 59.9298C127.764 60.0719 127.605 60.2052 127.452 60.3413C127.108 60.627 126.744 60.8878 126.387 61.1594C126.111 61.3619 125.829 61.5543 125.541 61.7495C120.339 65.5034 113.882 67.7554 106.828 68.9953Z"
-      fill="url(#paint0_linear_1_2)"
-    />
-    <path
-      d="M98.6792 1.83984L97.2314 3.2876C96.9639 3.55508 96.7597 3.87944 96.6348 4.23828L88.2422 27.8174H106.696L108.144 26.3696C108.411 26.1021 108.616 25.7778 108.74 25.4189L117.133 1.83984H98.6792Z"
-      fill="url(#paint1_linear_1_2)"
-    />
-    <defs>
-      <linearGradient
-        id="paint0_linear_1_2"
-        x1="71.6441"
-        y1="-4.24941"
-        x2="71.6441"
-        y2="73.2915"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#D4AF37" />
-        <stop offset="1" stopColor="#A47C34" />
-      </linearGradient>
-      <linearGradient
-        id="paint1_linear_1_2"
-        x1="102.688"
-        y1="1.83984"
-        x2="102.688"
-        y2="27.8174"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#D4AF37" />
-        <stop offset="1" stopColor="#A47C34" />
-      </linearGradient>
-    </defs>
-    <text
-      x="150"
-      y="30"
-      fontFamily="Lato, sans-serif"
-      fontSize="20"
-      fill="#333"
-      fontWeight="bold"
-    >
-      COUTURE CLICK
-    </text>
-    <text
-      x="150"
-      y="50"
-      fontFamily="Lato, sans-serif"
-      fontSize="10"
-      fill="#666"
-    >
-      RESHAPING ALTERATIONS AT HOME
-    </text>
-  </svg>
+    <Link href="/" className="flex items-center group">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-3 transition-transform duration-500 group-hover:rotate-12">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" className="stroke-2 stroke-[#D4AF37] fill-[#D4AF37]/20 transition-all duration-500 group-hover:fill-[#D4AF37]/40" />
+        <path d="M2 17L12 22L22 17" className="stroke-2 stroke-[#A47C34]" />
+        <path d="M2 12L12 17L22 12" className="stroke-2 stroke-[#A47C34]" />
+      </svg>
+      <div className="flex flex-col">
+        <span className="font-serif font-extrabold text-xl tracking-wider text-white">
+          COUTURE
+        </span>
+        <span className="text-xs font-light tracking-[0.2em] text-[#A47C34] -mt-1">
+          CLICK
+        </span>
+      </div>
+    </Link>
+  </motion.div>
 );
 
 const navLinks = [
-  { href: '#', label: 'HOME' },
-  { href: '#about', label: 'ABOUT' },
-  { href: '#services', label: 'SERVICES' },
-  { href: '#how-it-works', label: 'HOW WE WORK' },
-  { href: '#contact', label: 'CONTACT' },
+  { href: '#', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#services', label: 'Services' },
+  { href: '#how-it-works', label: 'Process' },
+  { href: '#contact', label: 'Contact' },
 ];
 
+
+// --- The Main Header Component ---
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  
+  // Effect for scroll detection
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check on initial load
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Effect to lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [isOpen]);
 
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled || isOpen ? 'bg-white shadow-md' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
+        isScrolled
+          ? 'bg-[#08081f]/80 backdrop-blur-lg border-b border-white/10 shadow-lg'
+          : 'bg-transparent',
+        !isScrolled && 'border-b-0 !border-transparent'
       )}
     >
       <div className="container mx-auto px-4">
-        <div
-          className={cn(
-            'flex justify-between items-center transition-all duration-300',
-            isScrolled ? 'h-16' : 'h-24'
-          )}
+        <motion.div
+          className="flex justify-between items-center"
+          initial={{ height: '7rem' }}
+          animate={{ height: isScrolled ? '4.5rem' : '6rem' }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <Link href="/">
-            <Logo />
-          </Link>
-          <nav className="hidden md:flex items-center space-x-6">
+          <Logo />
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-2 relative" onMouseLeave={() => setHoveredLink(null)}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={cn(
-                  'font-body font-bold text-sm tracking-widest uppercase transition-colors',
-                  isScrolled || isOpen
-                    ? 'text-gray-800 hover:text-primary'
-                    : 'text-white hover:text-primary/80'
+                className="px-4 py-2 font-medium text-sm text-gray-300 hover:text-white transition-colors duration-300 relative z-10"
+                onMouseEnter={() => setHoveredLink(link.href)}
+              >
+                {link.label}
+                {hoveredLink === link.href && (
+                  <motion.div
+                    layoutId="nav-highlight"
+                    className="absolute inset-0 bg-white/10 rounded-full"
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
                 )}
-              >
-                {link.label}
               </Link>
             ))}
           </nav>
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className={cn(
-                'hover:bg-transparent',
-                isScrolled || isOpen ? 'text-gray-800' : 'text-white'
-              )}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              <span className="sr-only">Toggle menu</span>
-            </Button>
+          
+          {/* Mobile Menu Icon */}
+          <div className="md:hidden text-[#D4AF37] z-50">
+            <AnimatedHamburgerIcon isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
           </div>
-        </div>
+        </motion.div>
       </div>
+
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white pb-4">
-          <nav className="flex flex-col items-center space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-body font-bold text-sm text-gray-800 hover:text-primary tracking-widest uppercase"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden fixed inset-0 bg-[#08081f] flex flex-col items-center justify-center space-y-8"
+            initial={{ opacity: 0, clipPath: 'circle(10% at 90% 10%)' }}
+            animate={{ opacity: 1, clipPath: 'circle(150% at 90% 10%)' }}
+            exit={{ opacity: 0, clipPath: 'circle(10% at 90% 10%)' }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+          >
+            <nav>
+                <motion.ul 
+                    className="flex flex-col items-center space-y-6"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="show"
+                    exit="hidden"
+                >
+                    {navLinks.map((link) => (
+                        <motion.li key={link.href} variants={staggerItem}>
+                            <Link
+                                href={link.href}
+                                className="font-serif font-bold text-3xl text-gray-300 hover:text-[#D4AF37] transition-colors duration-300"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {link.label}
+                            </Link>
+                        </motion.li>
+                    ))}
+                </motion.ul>
+            </nav>
+            <motion.div
+              className="absolute bottom-8 text-center text-[#A47C34] text-xs font-serif tracking-widest"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+            >
+              COUTURE CLICK &copy; 2025
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

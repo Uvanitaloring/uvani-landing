@@ -29,7 +29,7 @@ const contactDetails = [
 
 export function Contact() {
   return (
-    <section id="contact" className="py-16 md:py-24 bg-muted/30">
+    <section id="contact" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
             <h2 className="font-headline text-4xl md:text-5xl font-bold">Let's <span className="text-primary">Connect</span></h2>

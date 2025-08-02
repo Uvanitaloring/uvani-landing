@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 
 export function Subscribe() {
   return (
-    <section id="subscribe" className="py-20 bg-foreground text-background">
+    <section id="subscribe" className="py-20">
       <div className="container mx-auto px-4 text-center">
         <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary">Join The Elite</h2>
         <p className="font-body text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">
