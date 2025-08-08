@@ -76,7 +76,7 @@
 
 @layer base {
   body {
-    background-color: hsl(var(--background));
+    background: #6E1E3A;
     color: hsl(var(--foreground));
     min-height: 100vh;
   }

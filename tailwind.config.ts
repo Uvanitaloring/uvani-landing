@@ -10,6 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        serif: ['var(--font-cormorant)', 'serif'],
         body: ['Lato', 'sans-serif'],
         headline: ['"Playfair Display"', 'serif'],
         code: ['monospace'],

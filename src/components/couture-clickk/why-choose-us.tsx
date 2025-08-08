@@ -25,7 +25,7 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section id="benefits" className="relative overflow-hidden py-28 md:py-40 bg-gradient-to-br from-[#0e0718] via-[#1c0e29] to-[#0e0718]">
+    <section id="benefits" className="relative overflow-hidden py-28 md:py-40">
       {/* Elegant Patterned Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#2a1a3a_1px,transparent_1px),linear-gradient(to_bottom,#2a1a3a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05]" />
