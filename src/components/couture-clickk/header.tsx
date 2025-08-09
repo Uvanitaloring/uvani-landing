@@ -3,38 +3,72 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
-// Easing
-const easeOutSoft = [0.22, 1, 0.36, 1] as const;
+// Premium easing curves
+const easeOutElastic = [0.5, 1.5, 0.5, 1] as const;
+const easeInOutExpo = [0.87, 0, 0.13, 1] as const;
+const easeOutBack = [0.34, 1.56, 0.64, 1] as const;
 
 // Variants
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+    transition: { 
+      staggerChildren: 0.1, 
+      delayChildren: 0.2,
+      ease: easeInOutExpo
+    },
   },
 };
 
 const floatInItem: Variants = {
-  hidden: { opacity: 0, y: 14, filter: 'blur(4px)' },
+  hidden: { 
+    opacity: 0, 
+    y: 24, 
+    filter: 'blur(8px)',
+    scale: 0.95
+  },
   show: {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 0.5, ease: easeOutSoft },
+    scale: 1,
+    transition: { 
+      duration: 0.8, 
+      ease: easeOutElastic,
+    },
   },
 };
 
 const underlineSweep = {
-  initial: { scaleX: 0, opacity: 0.85, originX: 0 as const },
-  hover: { scaleX: 1, opacity: 1, transition: { duration: 0.35, ease: easeOutSoft } },
-  exit: { scaleX: 0, opacity: 0.85, transition: { duration: 0.25, ease: 'easeIn' } },
+  initial: { 
+    scaleX: 0, 
+    opacity: 0, 
+    originX: 0 as const 
+  },
+  hover: { 
+    scaleX: 1, 
+    opacity: 1, 
+    transition: { 
+      duration: 0.45, 
+      ease: easeInOutExpo 
+    } 
+  },
+  exit: { 
+    scaleX: 0, 
+    opacity: 0, 
+    transition: { 
+      duration: 0.3, 
+      ease: 'easeIn' as any 
+    } 
+  },
 };
 
-// Animated Hamburger
+// Premium Animated Hamburger Icon
 const AnimatedHamburgerIcon = ({
   isOpen,
   onClick,
@@ -43,12 +77,40 @@ const AnimatedHamburgerIcon = ({
   onClick: () => void;
 }) => {
   const topVariants: Variants = {
-    closed: { d: 'M 2 5 L 18 5' },
-    open: { d: 'M 3 16.5 L 17 2.5' },
+    closed: { 
+      d: 'M 2 5 L 20 5',
+      strokeWidth: 2,
+      opacity: 1
+    },
+    open: { 
+      d: 'M 4 16 L 16 4',
+      strokeWidth: 2.5,
+      opacity: 0.9
+    },
+  };
+  const middleVariants: Variants = {
+    closed: { 
+      d: 'M 2 12 L 20 12',
+      strokeWidth: 2,
+      opacity: 1
+    },
+    open: { 
+      d: 'M 10 10 L 10 10',
+      strokeWidth: 0,
+      opacity: 0
+    },
   };
   const bottomVariants: Variants = {
-    closed: { d: 'M 2 15 L 18 15' },
-    open: { d: 'M 3 2.5 L 17 16.5' },
+    closed: { 
+      d: 'M 2 19 L 20 19',
+      strokeWidth: 2,
+      opacity: 1
+    },
+    open: { 
+      d: 'M 4 4 L 16 16',
+      strokeWidth: 2.5,
+      opacity: 0.9
+    },
   };
 
   return (
@@ -62,30 +124,40 @@ const AnimatedHamburgerIcon = ({
       <motion.svg
         width="24"
         height="24"
-        viewBox="0 0 20 20"
-        className="stroke-current stroke-2 transition-transform duration-300 group-hover:scale-110"
+        viewBox="0 0 24 24"
+        className="stroke-current transition-transform duration-500 group-hover:scale-110"
         animate={isOpen ? 'open' : 'closed'}
         initial={false}
       >
         <defs>
-          <filter id="softGlow">
-            <feGaussianBlur stdDeviation="1.2" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          <filter id="luxuryGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D4AF37" />
+            <stop offset="50%" stopColor="#F1E5AC" />
+            <stop offset="100%" stopColor="#D4AF37" />
+          </linearGradient>
         </defs>
-        <g filter="url(#softGlow)">
+        <g filter="url(#luxuryGlow)">
           <motion.path
             variants={topVariants}
-            transition={{ duration: 0.45, ease: easeOutSoft }}
-            className="stroke-[#D4AF37] rounded"
+            transition={{ duration: 0.6, ease: easeOutBack }}
+            className="stroke-[url(#goldGradient)]"
+            strokeLinecap="round"
+          />
+          <motion.path
+            variants={middleVariants}
+            transition={{ duration: 0.4, ease: easeInOutExpo }}
+            className="stroke-[url(#goldGradient)]"
+            strokeLinecap="round"
           />
           <motion.path
             variants={bottomVariants}
-            transition={{ duration: 0.45, ease: easeOutSoft }}
-            className="stroke-[#D4AF37] rounded"
+            transition={{ duration: 0.6, ease: easeOutBack }}
+            className="stroke-[url(#goldGradient)]"
+            strokeLinecap="round"
           />
         </g>
       </motion.svg>
@@ -93,37 +165,40 @@ const AnimatedHamburgerIcon = ({
   );
 };
 
-// Logo
+// Premium Logo Component
 const Logo = () => (
-  <motion.div variants={floatInItem}>
-    <Link href="/" className="flex items-center group">
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        className="mr-3 transition-transform duration-700 group-hover:rotate-12"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#F1E4B3" />
-            <stop offset="50%" stopColor="#D4AF37" />
-            <stop offset="100%" stopColor="#A47C34" />
-          </linearGradient>
-        </defs>
-        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#goldGrad)" opacity="0.25" />
-        <path d="M2 17L12 22L22 17" stroke="#A47C34" strokeWidth="2" />
-        <path d="M2 12L12 17L22 12" stroke="#A47C34" strokeWidth="2" />
-      </svg>
-      <div className="flex flex-col">
-        <span className="font-serif font-extrabold text-xl tracking-wider text-white">
-          UVANI
-        </span>
-        <span className="text-xs font-light tracking-[0.25em] text-[#D4AF37]/90 -mt-1">
-          COUTURE
-        </span>
+  <motion.div 
+    variants={floatInItem}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <Link href="/" className="flex items-center group relative">
+      <div className="relative">
+        <Image
+          src="/logo/UVANI logo.png"
+          alt="UVANI Logo"
+          width={140}
+          height={120}
+          className="rounded-lg transition-all duration-700 group-hover:rotate-[5deg] group-hover:brightness-110"
+          priority
+        />
+        <motion.div
+          className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100"
+          initial={{ opacity: 0 }}
+          whileHover={{ opacity: 0.3 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            background: 'radial-gradient(circle at center, rgba(212,175,55,0.5) 0%, transparent 70%)',
+            mixBlendMode: 'overlay'
+          }}
+        />
       </div>
+      <motion.span
+        className="absolute -bottom-2 -right-2 h-3 w-3 rounded-full bg-[#D4AF37] shadow-[0_0_15px_3px_rgba(212,175,55,0.7)]"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.5, type: 'spring', stiffness: 500 }}
+      />
     </Link>
   </motion.div>
 );
@@ -139,6 +214,7 @@ const navLinks = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   // Scroll detection
   useEffect(() => {
@@ -161,38 +237,60 @@ export function Header() {
     <motion.header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 flex items-center',
-        'transition-[height,opacity,background-color,backdrop-filter,border-color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        'transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)]',
         isScrolled ? 'h-20' : 'h-24'
       )}
       style={{
-        background: isScrolled ? 'rgba(8, 8, 31, 0.55)' : 'rgba(8, 8, 31, 0.0)',
-        backdropFilter: isScrolled ? 'blur(10px)' : 'blur(0px)',
-        WebkitBackdropFilter: isScrolled ? 'blur(10px)' : 'blur(0px)',
+        background: isScrolled 
+          ? 'rgba(8, 8, 31, 0.85)' 
+          : 'none',
+        backdropFilter: isScrolled 
+          ? 'blur(12px) saturate(180%)' 
+          : 'none',
+        WebkitBackdropFilter: isScrolled 
+          ? 'blur(12px) saturate(180%)' 
+          : 'none',
         borderBottom: isScrolled
-          ? '1px solid rgba(255,255,255,0.10)'
-          : '1px solid rgba(255,255,255,0)',
-        boxShadow: isScrolled ? '0 10px 30px rgba(0,0,0,0.25)' : '0 0 0 rgba(0,0,0,0)',
+          ? '1px solid rgba(212,175,55,0.15)'
+          : 'none',
+        boxShadow: isScrolled 
+          ? '0 15px 40px rgba(0,0,0,0.3)' 
+          : 'none',
       }}
-      initial={{ opacity: 0, y: -12, filter: 'blur(6px)' }}
+      initial={{ opacity: 0, y: -24, filter: 'blur(8px)' }}
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      transition={{ duration: 0.6, ease: easeOutSoft }}
+      transition={{ duration: 0.8, ease: easeOutElastic }}
     >
-      {/* bottom gradient fade for contrast */}
-      <div
-        className={cn(
-          'pointer-events-none absolute inset-x-0 -bottom-px h-8 opacity-0 transition-opacity duration-700',
-          isScrolled ? 'opacity-100' : 'opacity-0'
-        )}
-        style={{
-          background: 'linear-gradient(to bottom, rgba(8,8,31,0.25), rgba(8,8,31,0))',
-        }}
-      />
+      {/* Luxury gradient overlay */}
+      {isScrolled && (
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: 0.15,
+            background: 'linear-gradient(135deg, rgba(212,175,55,0.2) 0%, transparent 60%)'
+          }}
+          transition={{ duration: 1, ease: easeInOutExpo }}
+        />
+      )}
 
-      <div className="container mx-auto px-4">
+      {/* bottom glow for depth */}
+      {isScrolled && (
+        <motion.div
+          className={cn(
+            'pointer-events-none absolute inset-x-0 -bottom-px h-12',
+            'bg-gradient-to-t from-[#08081f] to-transparent opacity-70'
+          )}
+          animate={{ opacity: 0.7 }}
+          transition={{ duration: 0.7 }}
+        />
+      )}
+
+      <div className="container mx-auto px-6">
         <div className="flex justify-between items-center">
           <Logo />
 
-          {/* Desktop Navigation */}
+          {/* Premium Desktop Navigation */}
           <motion.nav
             className="hidden md:flex items-center space-x-1"
             variants={staggerContainer}
@@ -200,36 +298,36 @@ export function Header() {
             animate="show"
           >
             {navLinks.map((link) => (
-              <motion.div key={link.href} variants={floatInItem}>
+              <motion.div 
+                key={link.href} 
+                variants={floatInItem}
+                onHoverStart={() => setHoveredItem(link.href)}
+                onHoverEnd={() => setHoveredItem(null)}
+              >
                 <Link
                   href={link.href}
                   className={cn(
-                    'group relative px-4 py-2 text-sm font-medium tracking-wide',
-                    'text-gray-300 hover:text-white transition-all duration-300'
+                    'group relative px-4 py-2 text-sm font-medium tracking-wider',
+                    'text-white/90 hover:text-[#FFD700] transition-all duration-500'
                   )}
                 >
-                  <span className="relative inline-flex items-center gap-2">
-                    <span className="font-serif">{link.label}</span>
-                    <motion.span
-                      className="h-1 w-1 rounded-full bg-[#D4AF37]/70 shadow-[0_0_10px_rgba(212,175,55,0.6)]"
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileHover={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.25 }}
-                    />
+                  <span className="font-serif uppercase tracking-[0.1em]">
+                    {link.label}
                   </span>
 
-                  {/* Golden aura */}
-                  <span
-                    className={cn(
-                      'absolute inset-0 -z-10 rounded-full opacity-0',
-                      'bg-[radial-gradient(120%_120%_at_50%_0%,rgba(212,175,55,0.18),transparent_60%)]',
-                      'transition-opacity duration-300 group-hover:opacity-100'
-                    )}
+                  {/* Hover spotlight effect */}
+                  <motion.span
+                    className="absolute inset-0 -z-10 rounded-full opacity-0"
+                    animate={{
+                      opacity: hoveredItem === link.href ? 0.2 : 0,
+                      background: 'radial-gradient(80% 80% at 50% 50%, rgba(212,175,55,0.4), transparent)'
+                    }}
+                    transition={{ duration: 0.5 }}
                   />
 
-                  {/* Underline sweep */}
+                  {/* Animated underline */}
                   <motion.span
-                    className="absolute left-4 right-4 -bottom-[2px] h-[2px] origin-left bg-gradient-to-r from-[#F1E4B3] via-[#D4AF37] to-[#A47C34]"
+                    className="absolute left-4 right-4 -bottom-1 h-px origin-left bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
                     initial={underlineSweep.initial}
                     whileHover={underlineSweep.hover}
                     exit={underlineSweep.exit}
@@ -239,14 +337,47 @@ export function Header() {
             ))}
           </motion.nav>
 
+          {/* CTA Button */}
+          <motion.div 
+            className="hidden md:block"
+            variants={floatInItem}
+          >
+            <Button
+              variant="outline"
+              className={cn(
+                'relative overflow-hidden border border-[#D4AF37]/30 bg-transparent',
+                'text-[#D4AF37] hover:text-white hover:bg-[#D4AF37]/10',
+                'font-serif uppercase tracking-wider text-xs px-6 py-4',
+                'transition-all duration-500 group'
+              )}
+            >
+              <span className="relative z-10">Book Consultation</span>
+              <motion.span
+                className="absolute inset-0 -z-10 bg-gradient-to-r from-[#D4AF37]/10 via-[#D4AF37]/5 to-[#D4AF37]/10"
+                initial={{ opacity: 0.5 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              />
+              <motion.span
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37]"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.6, ease: easeInOutExpo }}
+              />
+            </Button>
+          </motion.div>
+
           {/* Mobile Menu Icon */}
-          <motion.div className="md:hidden text-[#D4AF37] z-50" variants={floatInItem}>
+          <motion.div 
+            className="md:hidden z-50"
+            variants={floatInItem}
+          >
             <AnimatedHamburgerIcon isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
           </motion.div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Premium Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -256,40 +387,53 @@ export function Header() {
                 y: 0,
                 opacity: 1,
                 filter: 'blur(0px)',
-                transition: { duration: 0.6, ease: easeOutSoft },
+                transition: { 
+                  duration: 0.8, 
+                  ease: easeOutElastic,
+                },
               },
               closed: {
                 y: '-100%',
                 opacity: 0,
-                filter: 'blur(6px)',
-                transition: { duration: 0.45, ease: [0.64, 0, 0.78, 0] },
+                filter: 'blur(12px)',
+                transition: { 
+                  duration: 0.6, 
+                  ease: [0.64, 0, 0.78, 0] 
+                },
               },
             }}
             style={{
               background:
-                'linear-gradient(180deg, rgba(8,8,31,1) 0%, rgba(16,16,50,0.95) 60%, rgba(16,16,50,0.85) 100%)',
+                'linear-gradient(180deg, rgba(8,8,31,0.98) 0%, rgba(16,16,50,0.96) 100%)',
             }}
             initial="closed"
             animate="open"
             exit="closed"
           >
-            {/* shimmer overlay */}
+            {/* Luxury overlay effects */}
             <motion.div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
+              className="absolute inset-0 pointer-events-none"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.35 }}
+              animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: easeOutSoft }}
+              transition={{ duration: 1 }}
               style={{
-                background:
-                  'radial-gradient(100% 80% at 50% 0%, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0) 60%)',
+                background: 'radial-gradient(60% 60% at 50% 40%, rgba(212,175,55,0.15) 0%, transparent 70%)',
+              }}
+            />
+            
+            {/* Subtle grid pattern */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none opacity-5"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(212,175,55,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.3) 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
               }}
             />
 
-            <nav className="relative z-10">
+            <nav className="relative z-10 w-full px-8">
               <motion.ul
-                className="flex flex-col items-center space-y-3"
+                className="flex flex-col items-center space-y-6"
                 variants={staggerContainer}
                 initial="hidden"
                 animate="show"
@@ -299,27 +443,27 @@ export function Header() {
                   <motion.li
                     key={link.href}
                     variants={floatInItem}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full max-w-xs"
                   >
                     <Link
                       href={link.href}
-                      className="font-serif font-semibold text-2xl text-gray-100 hover:text-white transition-colors duration-300 py-2 relative"
+                      className="flex items-center w-full font-serif font-medium text-xl text-white/80 hover:text-white transition-colors duration-500 py-3 px-4 rounded-lg group"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span
-                        className="absolute inset-0 -z-10 rounded-full blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        style={{
-                          background:
-                            'radial-gradient(40% 40% at 50% 50%, rgba(212,175,55,0.18), transparent)',
-                        }}
-                      />
-                      {link.label}
+                      <span>{link.label}</span>
                       <motion.span
-                        className="block mt-1 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
-                        initial={{ scaleX: 0, opacity: 0.6 }}
-                        animate={{ scaleX: 1, opacity: 1 }}
-                        transition={{ duration: 0.5, ease: easeOutSoft }}
+                        className="h-px flex-1 mx-4 bg-gradient-to-r from-[#D4AF37]/30 via-[#D4AF37] to-[#D4AF37]/30"
+                        initial={{ scaleX: 0, opacity: 0 }}
+                        animate={{ scaleX: 1, opacity: 0.7 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                      />
+                      <motion.div
+                        className="w-2 h-2 rounded-full bg-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.1 }}
                       />
                     </Link>
                   </motion.li>
@@ -328,12 +472,12 @@ export function Header() {
             </nav>
 
             <motion.div
-              className="absolute bottom-10 text-center text-[#A47C34] text-xs font-serif tracking-[0.35em]"
-              initial={{ opacity: 0, y: 8 }}
+              className="absolute bottom-10 text-center text-[#D4AF37]/60 text-xs font-serif tracking-[0.35em]"
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
             >
-              COUTURE CLICK © 2025
+              UVANI © {new Date().getFullYear()}
             </motion.div>
           </motion.div>
         )}

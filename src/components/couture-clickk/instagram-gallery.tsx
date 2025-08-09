@@ -1,17 +1,37 @@
+
 import Image from 'next/image';
+import { Playfair_Display, Sora } from 'next/font/google';
+
+// --- Font Setup ---
+const fontSerif = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif',
+});
+
+const fontSans = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+});
 
 const galleryImages = [
-  { src: 'https://placehold.co/400x400.png', alt: 'Model in a dramatic black dress', aiHint: 'fashion model dramatic' },
-  { src: 'https://placehold.co/400x400.png', alt: 'Close-up of a luxury watch on a wrist', aiHint: 'luxury watch' },
-  { src: 'https://placehold.co/400x400.png', alt: 'Woman walking in a vibrant city street wearing a couture coat', aiHint: 'street style' },
-  { src: 'https://placehold.co/400x400.png', alt: 'A pair of designer sunglasses on a marble table', aiHint: 'designer sunglasses' },
-  { src: 'https://placehold.co/400x400.png', alt: 'Detailed shot of fabric texture and embroidery', aiHint: 'fabric texture' },
-  { src: 'https://placehold.co/400x400.png', alt: 'Man in a tailored suit looking out a window', aiHint: 'man tailored suit' },
+  { src: '/social-1.png', alt: 'Lookbook image 1', aiHint: 'lookbook' },
+  { src: '/social-2.png', alt: 'Lookbook image 2', aiHint: 'lookbook' },
+  { src: '/social-3.png', alt: 'Lookbook image 3', aiHint: 'lookbook' },
+  { src: '/social-4.png', alt: 'Lookbook image 4', aiHint: 'lookbook' },
+  { src: '/social-5.png', alt: 'Lookbook image 5', aiHint: 'lookbook' },
+  { src: '/social-6.png', alt: 'Lookbook image 6', aiHint: 'lookbook' },
+  { src: '/social-7.png', alt: 'Lookbook image 7', aiHint: 'lookbook' },
+  { src: '/social-8.png', alt: 'Lookbook image 8', aiHint: 'lookbook' },
+  { src: '/about-images/about-img-1.jpg', alt: 'Atelier detail', aiHint: 'atelier detail' },
 ];
-
 export function InstagramGallery() {
   return (
-    <section id="gallery" className="relative overflow-hidden py-28 md:py-40">
+    <section
+      id="gallery"
+      className={`relative overflow-hidden py-28 md:py-40 ${fontSans.variable} ${fontSerif.variable} bg-none`}
+    >
       {/* Elegant Patterned Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#2a1a3a_1px,transparent_1px),linear-gradient(to_bottom,#2a1a3a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05]" />
@@ -22,18 +42,17 @@ export function InstagramGallery() {
       <div className="absolute -bottom-40 -left-40 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent rounded-full blur-[120px]" />
       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-700/15 via-transparent to-transparent rounded-full blur-[90px]" />
 
-      <div className="container mx-auto px-4 max-w-6xl relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center mb-6">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-            <span className="mx-4 font-medium text-amber-400 tracking-wider">INSTAGRAM GALLERY</span>
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-          </div>
-          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-            Social <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-purple-400 to-amber-300">Lookbook</span>
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block mb-4 text-sm font-sans font-semibold tracking-wider text-[#C09A6C] uppercase">
+            Instagram Gallery
+          </span>
+          <h2 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] leading-tight font-medium text-neutral-100 mb-6">
+            Social <span className="text-[#C09A6C]">Lookbook</span>
           </h2>
-          <p className="font-sans text-lg md:text-xl text-purple-200/80 max-w-2xl mx-auto leading-relaxed mt-2">
-            Follow our journey on Instagram <span className="text-amber-300 font-semibold">@CoutureClickk</span>
+          <div className="mt-6 h-px w-24 bg-gradient-to-r from-[#C09A6C] to-transparent mx-auto" />
+          <p className="mt-8 text-lg text-neutral-300 leading-relaxed font-sans max-w-2xl mx-auto">
+            Follow our journey on Instagram <span className="text-[#C09A6C] font-semibold">@CoutureClickk</span>
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

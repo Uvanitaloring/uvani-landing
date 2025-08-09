@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 270 40% 12%;
+    --background: 337 57% 27%; /* #6E1E3A in HSL */
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -39,7 +39,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 270 40% 12%;
+    --background: 337 57% 27%; /* #6E1E3A in HSL */
     --foreground: 0 0% 98%;
     --card: 0 0% 0%;
     --card-foreground: 0 0% 98%;
@@ -76,7 +76,7 @@
 
 @layer base {
   body {
-    background: #6E1E3A;
+    background: hsl(var(--background));
     color: hsl(var(--foreground));
     min-height: 100vh;
   }

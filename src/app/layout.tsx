@@ -8,7 +8,7 @@ import { Footer } from '@/components/couture-clickk/footer';
 
 
 export const metadata: Metadata = {
-  title: 'Couture Clickk',
+  title: 'Uvani',
   description: 'Where fashion meets timeless elegance.',
 };
 

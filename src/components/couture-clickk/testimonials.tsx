@@ -1,4 +1,20 @@
+
 "use client";
+
+import { Playfair_Display, Sora } from 'next/font/google';
+
+// --- Font Setup ---
+const fontSerif = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif',
+});
+
+const fontSans = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+});
 
 import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -32,7 +48,10 @@ const testimonials = [
 export function Testimonials() {
   return (
     <AnimateWrapper>
-      <section id="testimonials" className="relative overflow-hidden py-28 md:py-40 bg-gradient-to-br from-[#0e0718] via-[#1c0e29] to-[#0e0718]">
+      <section
+        id="testimonials"
+        className={`relative overflow-hidden py-28 md:py-40 bg-none ${fontSans.variable} ${fontSerif.variable}`}
+      >
         {/* Elegant Patterned Background */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#2a1a3a_1px,transparent_1px),linear-gradient(to_bottom,#2a1a3a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05]" />
@@ -43,17 +62,16 @@ export function Testimonials() {
         <div className="absolute -bottom-40 -left-40 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent rounded-full blur-[120px]" />
         <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-700/15 via-transparent to-transparent rounded-full blur-[90px]" />
 
-        <div className="container mx-auto px-4 max-w-5xl relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center justify-center mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-              <span className="mx-4 font-medium text-amber-400 tracking-wider">TESTIMONIALS</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-            </div>
-            <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-              Words of <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-purple-400 to-amber-300">Elegance</span>
+        <div className="container mx-auto px-6 max-w-4xl relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block mb-4 text-sm font-sans font-semibold tracking-wider text-[#C09A6C] uppercase">
+              Testimonials
+            </span>
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] leading-tight font-medium text-neutral-100 mb-6">
+              Words of <span className="text-[#C09A6C]">Elegance</span>
             </h2>
-            <p className="font-sans text-lg md:text-xl text-purple-200/80 max-w-2xl mx-auto leading-relaxed mt-2">
+            <div className="mt-6 h-px w-24 bg-gradient-to-r from-[#C09A6C] to-transparent mx-auto" />
+            <p className="mt-8 text-lg text-neutral-300 leading-relaxed font-sans max-w-2xl mx-auto">
               What our discerning clients say about us.
             </p>
           </div>
@@ -77,8 +95,8 @@ export function Testimonials() {
                               <Star key={i} className="w-5 h-5 text-amber-300 fill-amber-300 drop-shadow" />
                             ))}
                         </div>
-                        <p className="font-body text-purple-200/80 italic text-lg">"{testimonial.quote}"</p>
-                        <p className="font-headline text-lg font-semibold mt-6 text-white">- {testimonial.name}</p>
+                        <p className="text-neutral-300 font-sans italic text-lg">"{testimonial.quote}"</p>
+                        <p className="text-lg font-serif font-semibold mt-6 text-[#F4E8D8]">- {testimonial.name}</p>
                       </CardContent>
                     </Card>
                   </div>

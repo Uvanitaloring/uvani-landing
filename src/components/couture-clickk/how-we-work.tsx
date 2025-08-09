@@ -1,62 +1,62 @@
 "use client";
-import { Bookmark, Calendar, Car, Scissors } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Bookmark, Calendar, Car, Scissors, ArrowRight } from 'lucide-react';
+// Assuming you have a Button component, if not, replace with a standard button
+// import { Button } from '@/components/ui/button';
+const Button = ({ children, className, ...props }) => (
+  <button className={className} {...props}>
+    {children}
+  </button>
+);
+import { motion, useMotionValue, animate } from 'framer-motion';
+import { useState, useRef } from 'react';
 
+// Data for the steps
 const steps = [
   {
     icon: Bookmark,
     step: 'Step 1',
-    title: 'Book on our website',
-    description:
-      'Visit our website and fill out the booking form with your details and service requirements.',
+    title: 'Book Your Appointment',
+    description: 'Schedule your tailoring service through our seamless online booking system.',
+    color: 'from-amber-500 to-amber-600'
   },
   {
     icon: Calendar,
     step: 'Step 2',
-    title: 'Choose your time slots',
-    description:
-      'Select a convenient time for our team to visit you for measurements and consultation.',
+    title: 'Personal Consultation',
+    description: 'Our master tailor visits you at your preferred time for measurements.',
+    color: 'from-purple-500 to-purple-600'
   },
   {
     icon: Scissors,
     step: 'Step 3',
-    title: 'Pickup & Tailoring',
-    description:
-      'Our experts will pick up your garments and perform alterations with precision and care.',
+    title: 'Precision Tailoring',
+    description: 'Expert craftsmanship with attention to every detail of your garments.',
+    color: 'from-rose-500 to-rose-600'
   },
   {
     icon: Car,
     step: 'Step 4',
-    title: 'Delivery at door',
-    description:
-      'Receive your perfectly altered clothing delivered back to your doorstep, ready to wear.',
+    title: 'Convenient Delivery',
+    description: 'Your perfectly tailored clothing delivered to your doorstep.',
+    color: 'from-indigo-500 to-indigo-500'
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
+// Framer Motion variants for animations
 const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.6
+      type: "spring",
+      stiffness: 100,
+      damping: 15
     }
   },
   hover: {
-    y: -10,
-    transition: {
-      duration: 0.3
-    }
+    y: -8,
+    transition: { duration: 0.3 }
   }
 };
 
@@ -66,145 +66,242 @@ const iconVariants = {
     scale: 1,
     opacity: 1,
     transition: {
-      duration: 0.5
+      type: "spring",
+      stiffness: 150
     }
   },
   hover: {
-    rotate: 10,
+    rotate: 5,
     scale: 1.05,
-    transition: {
-      duration: 0.3
-    }
+    transition: { duration: 0.3 }
   }
 };
 
-export function HowWeWork() {
+export default function HowWeWork() {
+  // Ref to the SVG path element to calculate its length
+  const pathRef = useRef<SVGPathElement>(null);
+  // State to track if the main animation has run to prevent re-triggering
+  const [hasAnimated, setHasAnimated] = useState(false);
+  // State to manage the visibility of each step card
+  const [stepVisible, setStepVisible] = useState(Array(steps.length).fill(false));
+  // State to control hover effects only after the initial animation is complete
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null);
+
+  // Motion values for the animated line and needle
+  const pathLength = useMotionValue(0);
+  const needleX = useMotionValue(0);
+  const needleY = useMotionValue(0);
+  const needleRotate = useMotionValue(0);
+
+  // Trigger points for each step to appear (as a percentage of the path length)
+  const stepTriggerPoints = [0.12, 0.37, 0.62, 0.87];
+
+  // This effect runs when the component enters the viewport
+  const handleViewportEnter = () => {
+    if (hasAnimated || !pathRef.current) return;
+    setHasAnimated(true); // Ensure animation runs only once
+
+    // Start the line-drawing animation using framer-motion's animate function
+    const lineAnimation = animate(pathLength, 1, {
+      duration: 3,
+      ease: "easeInOut",
+    });
+
+    // This function will be called for every frame of the animation
+    const unsubscribe = pathLength.on("change", (latest) => {
+      if (pathRef.current) {
+        // Get the total length of the SVG path
+        const totalLength = pathRef.current.getTotalLength();
+        // Calculate the current point on the path based on the animation progress
+        const point = pathRef.current.getPointAtLength(latest * totalLength);
+        // Calculate a previous point to determine the angle for the needle
+        const prevPoint = pathRef.current.getPointAtLength(Math.max(0, latest * totalLength - 1));
+        
+        // Calculate angle from the difference in points and convert to degrees
+        const angle = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x) * (180 / Math.PI);
+
+        // Update needle's position and rotation motion values
+        needleX.set(point.x);
+        needleY.set(point.y);
+        needleRotate.set(angle);
+
+        // Check if any step's trigger point has been passed, and if so, make it visible
+        stepTriggerPoints.forEach((triggerPoint, index) => {
+            if (latest >= triggerPoint && !stepVisible[index]) {
+                setStepVisible(prev => {
+                    const newVisible = [...prev];
+                    newVisible[index] = true;
+                    return newVisible;
+                });
+            }
+        });
+      }
+    });
+
+    // Cleanup function to stop the animation and unsubscribe on component unmount
+    return () => {
+      lineAnimation.stop();
+      unsubscribe();
+    };
+  };
+
   return (
-    <section id="how-it-works" className="relative overflow-hidden py-28 md:py-40">
-      {/* Elegant Patterned Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#2a1a3a_1px,transparent_1px),linear-gradient(to_bottom,#2a1a3a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05]" />
+    // Assuming a dark background, added bg-gray-900 and text-white for standalone visibility
+    <section id="how-it-works" className="relative overflow-hidden py-24 md:py-36 bg-none  text-white">
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 -z-10 opacity-20">
+        {/* Placeholder for background pattern */}
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stitched-wool.png')] bg-repeat opacity-5" />
       </div>
+      
+      {/* Refined gradient accents */}
+      <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500/5 via-transparent to-transparent rounded-full blur-[100px]" />
+      <div className="absolute -bottom-40 -left-40 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/5 via-transparent to-transparent rounded-full blur-[120px]" />
 
-      {/* Refined Gradient Orbs */}
-      <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent rounded-full blur-[100px]" />
-      <div className="absolute -bottom-40 -left-40 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-700/15 via-transparent to-transparent rounded-full blur-[90px]" />
-
-      <div className="container mx-auto px-4 max-w-6xl relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        {/* Section Header */}
         <motion.div 
-          className="text-center mb-20"
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          className="text-center mb-16 md:mb-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <div className="inline-flex items-center justify-center mb-6">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-            <span className="mx-4 font-medium text-amber-400 tracking-wider">PREMIUM PROCESS</span>
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
+          <div className="inline-flex items-center mb-6">
+            <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
+            <span className="mx-4 text-xs font-sans font-medium tracking-widest text-[#C09A6C] uppercase">Tailoring Process</span>
+            <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
           </div>
-          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-            How <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-purple-400 to-amber-300">We Work</span>
+          
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-[3.4rem] leading-tight font-medium text-neutral-100 mb-6">
+            The <span className="text-[#C09A6C]">Uvani</span> Experience
           </h2>
-          <p className="font-sans text-lg md:text-xl text-purple-200/80 max-w-3xl mx-auto leading-relaxed">
-            A seamless process for your convenience and perfect results every time.
+          
+          <p className="mt-8 text-lg text-neutral-300 leading-relaxed font-sans max-w-2xl mx-auto">
+            Our meticulous four-step process ensures perfection in every stitch and complete convenience for you.
           </p>
         </motion.div>
 
+        {/* Process Steps Container */}
         <motion.div 
           className="relative"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          onViewportEnter={handleViewportEnter} // This triggers the animation
+          viewport={{ once: true, margin: "-200px" }}
         >
-          {/* Animated connector line */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full -translate-y-1/2">
-            <svg
-              width="100%"
-              height="12"
-              className="overflow-visible"
+          {/* Animated connector line and needle - NOW FULLY RESPONSIVE */}
+          <div className="hidden md:block absolute top-0 left-0 w-full h-full">
+            <svg 
+              className="w-full h-full overflow-visible" 
+              viewBox="0 0 1152 100" 
               preserveAspectRatio="none"
+              style={{ height: '120px' }} // Fixed height for consistent alignment
             >
-              <motion.path
-                d="M0 6 C200 6, 200 12, 400 6 S600 0, 800 6 S1000 12, 1200 6"
-                stroke="url(#gradient)"
-                strokeWidth="2"
-                fill="none"
-                strokeDasharray="8, 8"
-                vectorEffect="non-scaling-stroke"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-              />
               <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#a78bfa" />
-                  <stop offset="50%" stopColor="#c084fc" />
-                  <stop offset="100%" stopColor="#f472b6" />
+                <linearGradient id="process-line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0" />
+                  <stop offset="10%" stopColor="#f59e0b" stopOpacity="1" />
+                  <stop offset="50%" stopColor="#8b5cf6" stopOpacity="1" />
+                  <stop offset="90%" stopColor="#f59e0b" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
                 </linearGradient>
               </defs>
+              {/* The SVG path that the needle will follow. Coordinates are relative to the viewBox */}
+              <motion.path
+                ref={pathRef}
+                d="M0 50 C192 50, 192 60, 384 50 S576 40, 768 50 S960 60, 1152 50"
+                stroke="url(#process-line-gradient)"
+                strokeWidth="2"
+                fill="none"
+                vectorEffect="non-scaling-stroke" // Keeps stroke width consistent on scaling
+                // Animate the pathLength style property to "draw" the line
+                style={{ pathLength }}
+              />
             </svg>
+            {/* The needle element that moves along the path */}
+            <motion.div
+              className="absolute top-0 left-0"
+              // Bind needle's style to motion values. The transform origin is adjusted for better rotation.
+              style={{ x: needleX, y: needleY, rotate: needleRotate, transformOrigin: '25% 50%' }}
+            >
+              {/* Using an inline SVG for the needle for better control and no external asset dependency */}
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{transform: "translate(-50%, -50%)"}}>
+                <path d="M16.9982 2.83993C16.588 2.2223 15.756 2.09526 15.1384 2.50548C14.5208 2.9157 14.3937 3.74768 14.804 4.36531L23.444 16.9982L2.99902 20.9982C2.2834 21.1033 1.83838 21.7984 1.9435 22.514C2.04861 23.2296 2.74373 23.6747 3.45935 23.5695L24.554 19.434L16.9982 2.83993Z" fill="#C09A6C"/>
+                <path d="M26.9982 22.9982L17.9982 12.9982L28.9982 24.9982L26.9982 22.9982Z" fill="#FBBF24"/>
+              </svg>
+            </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-y-16 gap-x-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-y-16 md:gap-y-0 md:gap-x-8 relative pt-16 md:pt-0">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
                 className="flex flex-col items-center text-center relative px-4 group"
                 variants={itemVariants}
-                whileHover="hover"
+                // Animate based on the stepVisible state
+                animate={stepVisible[index] ? 'visible' : 'hidden'}
+                initial="hidden"
+                whileHover={hasAnimated ? "hover" : undefined}
+                onHoverStart={() => hasAnimated && setHoveredStep(index)}
+                onHoverEnd={() => hasAnimated && setHoveredStep(null)}
               >
+                {/* Step Indicator Dot - Animates with the step */}
                 <motion.div 
-                  className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-[#2d183a]/80 via-[#1a1026]/80 to-[#23143a]/80 border-2 border-purple-900/40 shadow-xl mb-6 z-10 overflow-hidden backdrop-blur-xl"
+                  className="absolute -top-3 left-1/2 w-5 h-5 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 -translate-x-1/2 z-20 shadow-lg"
+                  variants={{ hidden: { scale: 0 }, visible: { scale: 1 } }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+                {/* Icon Container */}
+                <motion.div 
+                  className="relative flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-[#1e102d] to-[#23143a] border border-[#C09A6C]/20 shadow-lg mb-6 z-10 overflow-hidden backdrop-blur-sm"
                   variants={iconVariants}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-purple-900/20 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-purple-900/30 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                  <div className="w-20 h-20 flex items-center justify-center rounded-full bg-transparent z-10">
-                    <step.icon className="w-10 h-10 text-amber-300 group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  <motion.span 
-                    className="absolute -bottom-2 bg-gradient-to-r from-amber-500 via-purple-500 to-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 + (index * 0.1) }}
-                  >
-                    {step.step}
-                  </motion.span>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`} />
+                  <step.icon className="w-10 h-10 text-[#C09A6C] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                 </motion.div>
 
-                <motion.h3 
-                  className="font-headline text-xl font-semibold mb-3 text-white"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 + (index * 0.1) }}
-                >
-                  {step.title}
-                </motion.h3>
-                <motion.p 
-                  className="font-body text-purple-200/80 text-sm md:text-base"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 + (index * 0.1) }}
-                >
-                  {step.description}
-                </motion.p>
-
-                {/* Animated indicator */}
-                <motion.div 
-                  className="absolute top-0 left-1/2 w-4 h-4 bg-gradient-to-r from-amber-400 via-purple-400 to-amber-400 rounded-full -translate-x-1/2 -translate-y-2 z-20 shadow-lg"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ 
-                    delay: 0.3 + (index * 0.1),
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                />
+                {/* Step Content */}
+                <div className="relative z-10">
+                  <span className="inline-block mb-3 text-xs font-sans font-medium tracking-widest text-[#C09A6C] uppercase">
+                    {step.step}
+                  </span>
+                  <h3 className="text-lg font-medium text-neutral-100 font-serif mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-neutral-400 font-sans text-sm mb-2">
+                    {step.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div 
+          className="mt-24 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <p className="font-sans text-neutral-300 mb-8 max-w-2xl mx-auto">
+            Ready to experience bespoke tailoring at its finest?
+          </p>
+          
+          <Button 
+            size="lg"
+            className="group relative overflow-hidden px-6 py-3 bg-[#C09A6C] text-neutral-900 hover:bg-[#D4B483] hover:text-neutral-900
+            rounded-lg font-sans font-semibold text-base tracking-wide
+            transition-all duration-300 ease-out
+            focus-visible:ring-2 focus-visible:ring-[#C09A6C]/50 focus-visible:ring-offset-2
+            shadow-lg shadow-[#C09A6C]/20 hover:shadow-[#D4B483]/30"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-[#C09A6C] to-[#D4B483] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10 flex flex-row items-center justify-center">
+              Begin Your Tailoring Journey
+              <ArrowRight className="ml-3 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </Button>
         </motion.div>
       </div>
     </section>

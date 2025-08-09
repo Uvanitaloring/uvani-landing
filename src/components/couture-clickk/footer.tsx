@@ -1,5 +1,20 @@
+
 import Link from 'next/link';
 import { Instagram, Facebook, Twitter, Youtube, Linkedin } from 'lucide-react';
+import { Playfair_Display, Sora } from 'next/font/google';
+
+// --- Font Setup ---
+const fontSerif = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif',
+});
+
+const fontSans = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+});
 
 const Logo = () => (
     <svg
@@ -66,7 +81,7 @@ const Logo = () => (
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t">
+    <footer className={`bg-background border-t ${fontSans.variable} ${fontSerif.variable}`}>
       <div className="container mx-auto px-4 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Logo and About */}
@@ -74,15 +89,15 @@ export function Footer() {
              <Link href="/">
                 <Logo />
              </Link>
-            <p className="text-purple-200/90 mt-4 font-body text-sm">
+            <p className="text-neutral-300 mt-4 font-sans text-sm">
               Couture Clickk is your premier destination for high-end fashion alterations, blending traditional craftsmanship with modern convenience.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-headline text-lg font-bold mb-4 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-600 bg-clip-text text-transparent">Quick Links</h3>
-            <ul className="space-y-2 font-body text-sm">
+            <h3 className="text-lg font-serif font-semibold mb-4 text-[#C09A6C]">Quick Links</h3>
+            <ul className="space-y-2 font-sans text-sm">
               <li><Link href="#about" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">About Us</Link></li>
               <li><Link href="#services" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Services</Link></li>
               <li><Link href="#how-it-works" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">How We Work</Link></li>
@@ -92,8 +107,8 @@ export function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="font-headline text-lg font-bold mb-4 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-600 bg-clip-text text-transparent">Support</h3>
-            <ul className="space-y-2 font-body text-sm">
+            <h3 className="text-lg font-serif font-semibold mb-4 text-[#C09A6C]">Support</h3>
+            <ul className="space-y-2 font-sans text-sm">
               <li><Link href="#contact" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Contact Us</Link></li>
               <li><Link href="#" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">FAQ</Link></li>
               <li><Link href="#" className="text-purple-200/80 hover:text-amber-300 transition-colors font-medium">Privacy Policy</Link></li>
@@ -103,7 +118,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="font-headline text-lg font-bold mb-4 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-600 bg-clip-text text-transparent">Follow Us</h3>
+            <h3 className="text-lg font-serif font-semibold mb-4 text-[#C09A6C]">Follow Us</h3>
             <div className="flex gap-4">
               <Link href="#" aria-label="Instagram">
                 <Instagram className="h-6 w-6 text-purple-200/80 hover:text-amber-300 transition-colors" />
@@ -123,7 +138,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t pt-8 text-center text-sm text-purple-200/60 font-body">
+  <div className="mt-12 border-t pt-8 text-center text-sm text-neutral-400 font-sans">
           <p>&copy; {new Date().getFullYear()} Couture Clickk. All Rights Reserved.</p>
         </div>
       </div>

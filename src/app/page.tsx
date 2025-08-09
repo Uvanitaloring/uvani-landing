@@ -3,7 +3,7 @@ import { AnimateWrapper } from '@/components/couture-clickk/animate-wrapper';
 import { Contact } from '@/components/couture-clickk/contact';
 import { Header } from '@/components/couture-clickk/header';
 import { Hero } from '@/components/couture-clickk/hero';
-import { HowWeWork } from '@/components/couture-clickk/how-we-work';
+import HowWeWork from '@/components/couture-clickk/how-we-work';
 import { InstagramGallery } from '@/components/couture-clickk/instagram-gallery';
 import { Services } from '@/components/couture-clickk/services';
 import { Subscribe } from '@/components/couture-clickk/subscribe';
@@ -12,7 +12,7 @@ import { WhyChooseUs } from '@/components/couture-clickk/why-choose-us';
 
 export default function CoutureClickkLandingPage() {
   return (
-    <div className="bg-background text-foreground flex flex-col min-h-screen">
+    <div className="text-foreground flex flex-col min-h-screen">
       <Header />
       <Hero />
       <main className="flex-grow">

@@ -1,4 +1,21 @@
+
+"use client";
+
 import { Gem, Award, Home, UserCheck } from 'lucide-react';
+import { Playfair_Display, Sora } from 'next/font/google';
+
+// --- Font Setup ---
+const fontSerif = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif',
+});
+
+const fontSans = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+});
 
 const benefits = [
   {
@@ -25,7 +42,10 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section id="benefits" className="relative overflow-hidden py-28 md:py-40">
+    <section
+      id="benefits"
+      className={`relative overflow-hidden py-28 md:py-40 ${fontSans.variable} ${fontSerif.variable} bg-none`}
+    >
       {/* Elegant Patterned Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#2a1a3a_1px,transparent_1px),linear-gradient(to_bottom,#2a1a3a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05]" />
@@ -36,32 +56,31 @@ export function WhyChooseUs() {
       <div className="absolute -bottom-40 -left-40 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent rounded-full blur-[120px]" />
       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-700/15 via-transparent to-transparent rounded-full blur-[90px]" />
 
-      <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center mb-6">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-            <span className="mx-4 font-medium text-amber-400 tracking-wider">WHY CHOOSE US</span>
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-          </div>
-          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-            The Couture Clickk <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-purple-400 to-amber-300">Promise</span>
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <span className="inline-block mb-4 text-sm font-sans font-semibold tracking-wider text-[#C09A6C] uppercase">
+            Why Choose Us
+          </span>
+          <h2 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] leading-tight font-medium text-neutral-100 mb-6">
+            The Couture Clickk <span className="text-[#C09A6C]">Promise</span>
           </h2>
-          <p className="font-sans text-lg md:text-xl text-purple-200/80 max-w-3xl mx-auto leading-relaxed">
+          <div className="mt-6 h-px w-24 bg-gradient-to-r from-[#C09A6C] to-transparent mx-auto" />
+          <p className="mt-8 text-lg text-neutral-300 leading-relaxed font-sans max-w-2xl mx-auto">
             Experience the difference of true luxury, convenience, and craftsmanship with every stitch.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {benefits.map((benefit, i) => (
             <div
               key={benefit.title}
-              className="group flex flex-col items-center p-8 bg-gradient-to-b from-[#1e102d]/70 to-[#0f081b]/70 border border-purple-900/30 shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_48px_rgba(113,0,255,0.25)] backdrop-blur-xl transition-all duration-500 rounded-2xl overflow-hidden relative"
+              className="group flex flex-col items-center p-8 bg-gradient-to-b from-[#1e102d]/90 to-[#0f081b]/90 border border-[#C09A6C]/10 shadow-lg hover:shadow-xl shadow-[#1e102d]/20 hover:shadow-[#6d28d9]/30 backdrop-blur-sm transition-all duration-300 rounded-xl overflow-hidden relative"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/10 to-purple-900/20 mb-6 group-hover:bg-gradient-to-br group-hover:from-amber-500/20 group-hover:to-purple-900/30 transition-all duration-500">
-                <benefit.icon className="w-10 h-10 text-amber-300 group-hover:text-amber-200 transition-colors duration-500" strokeWidth={1.5} />
+                <benefit.icon className="w-10 h-10 text-amber-300 group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
               </div>
-              <h3 className="font-headline text-2xl font-semibold mb-2 text-white">{benefit.title}</h3>
-              <p className="font-body text-purple-200/80">{benefit.description}</p>
+              <h3 className="text-2xl font-serif font-semibold text-[#F4E8D8] mb-2">{benefit.title}</h3>
+              <p className="text-neutral-300 font-sans">{benefit.description}</p>
             </div>
           ))}
         </div>

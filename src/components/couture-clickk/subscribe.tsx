@@ -1,9 +1,27 @@
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Playfair_Display, Sora } from 'next/font/google';
+
+// --- Font Setup ---
+const fontSerif = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif',
+});
+
+const fontSans = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+});
 
 export function Subscribe() {
   return (
-    <section id="subscribe" className="relative overflow-hidden py-24">
+    <section
+      id="subscribe"
+      className={`relative overflow-hidden py-24 ${fontSans.variable} ${fontSerif.variable} bg-none`}
+    >
       {/* Elegant Patterned Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#2a1a3a_1px,transparent_1px),linear-gradient(to_bottom,#2a1a3a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05]" />
@@ -20,10 +38,10 @@ export function Subscribe() {
           <span className="mx-4 font-medium text-amber-400 tracking-wider">NEWSLETTER</span>
           <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
         </div>
-        <h2 className="font-headline text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
-          Join The <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-purple-400 to-amber-300">Elite</span>
+        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-neutral-100 mb-4">
+          Join The <span className="text-[#C09A6C]">Elite</span>
         </h2>
-        <p className="font-sans text-lg md:text-xl text-purple-200/80 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-8 text-lg text-neutral-300 leading-relaxed font-sans max-w-2xl mx-auto">
           Subscribe to our newsletter for exclusive access to new collections, private sales, and a world of luxury.
         </p>
         <form className="mt-10 max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
