@@ -22,20 +22,20 @@ const contactDetails = [
   {
     icon: Phone,
     title: 'Phone',
-    detail: '+91 7766906395',
-    href: 'tel:+917766906395'
+  detail: '+91 96616 88834',
+  href: 'tel:+919661688834'
   },
   {
     icon: Mail,
     title: 'Email',
-  detail: 'uvani25@gmail.com',
-  href: 'mailto:uvani25@gmail.com'
+  detail: 'uvanitaloring2025@gmail.com',
+  href: 'mailto:uvanitaloring2025@gmail.com'
   },
   {
     icon: MessageCircle,
     title: 'WhatsApp',
-    detail: '+91 7766906395',
-    href: 'https://wa.me/917766906395'
+  detail: '+91 96616 88834',
+  href: 'https://wa.me/919661688834'
   },
   {
     icon: MapPin,

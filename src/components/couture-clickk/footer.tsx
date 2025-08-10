@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Instagram, Facebook, Twitter, Youtube, Linkedin } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
 import { Playfair_Display, Sora } from 'next/font/google';
 
 // --- Font Setup ---
@@ -76,39 +76,40 @@ export function Footer() {
             <h3 className="text-lg font-serif font-semibold mb-6 text-[#C09A6C] tracking-wide">CONNECT</h3>
             <div className="flex flex-wrap gap-4 mt-2">
               <Link 
-                href="#" 
+                href="https://www.instagram.com/__uvani__/" 
                 aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Instagram className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
               <Link 
-                href="#" 
+                href="https://www.facebook.com/profile.php?id=61578809716635" 
                 aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Facebook className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
               <Link 
-                href="#" 
+                href="https://x.com/_Uvani_" 
                 aria-label="Twitter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Twitter className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
               <Link 
-                href="#" 
+                href="https://www.youtube.com/@Uvani-j7m" 
                 aria-label="YouTube"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Youtube className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
-              </Link>
-              <Link 
-                href="#" 
-                aria-label="LinkedIn"
-                className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
-              >
-                <Linkedin className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
             </div>
             
