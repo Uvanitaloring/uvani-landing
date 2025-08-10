@@ -29,7 +29,7 @@ const Logo = () => (
 
 export function Footer() {
   return (
-    <footer className={`bg-[#0F0F0F] border-t border-[#1E1E1E] ${fontSans.variable} ${fontSerif.variable}`}>
+    <footer className={`bg-[#08081f] border-t border-[#1E1E1E] ${fontSans.variable} ${fontSerif.variable}`}>
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* Logo and About */}
@@ -80,7 +80,7 @@ export function Footer() {
                 aria-label="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
+                className="bg-[#08081f] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Instagram className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
@@ -89,7 +89,7 @@ export function Footer() {
                 aria-label="Facebook"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
+                className="bg-[#08081f] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Facebook className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
@@ -98,7 +98,7 @@ export function Footer() {
                 aria-label="Twitter"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
+                className="bg-[#08081f] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Twitter className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
@@ -107,7 +107,7 @@ export function Footer() {
                 aria-label="YouTube"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1A1A1A] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
+                className="bg-[#08081f] hover:bg-[#C09A6C] p-3 rounded-full transition-all duration-300 group"
               >
                 <Youtube className="h-5 w-5 text-[#E0E0E0] group-hover:text-[#0F0F0F]" />
               </Link>
@@ -120,7 +120,7 @@ export function Footer() {
                 <input 
                   type="email" 
                   placeholder="Your email address" 
-                  className="bg-[#1A1A1A] text-[#E0E0E0] text-sm px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#C09A6C]"
+                  className="bg-[#08081f] text-[#E0E0E0] text-sm px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#C09A6C]"
                 />
                 <button className="bg-[#C09A6C] hover:bg-[#A8845A] text-[#0F0F0F] px-4 py-2 text-sm font-medium transition-colors duration-300">
                   Subscribe
