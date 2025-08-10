@@ -44,15 +44,25 @@ export function InstagramGallery() {
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block mb-4 text-sm font-sans font-semibold tracking-wider text-[#C09A6C] uppercase">
-            Instagram Gallery
-          </span>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+              <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            </span>
+            <span className="text-xs font-sans font-semibold tracking-widest text-[#C09A6C] uppercase">Instagram Gallery</span>
+            <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+              <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            </span>
+          </div>
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] leading-tight font-medium text-neutral-100 mb-6">
             Social <span className="text-[#C09A6C]">Lookbook</span>
           </h2>
           <div className="mt-6 h-px w-24 bg-gradient-to-r from-[#C09A6C] to-transparent mx-auto" />
           <p className="mt-8 text-lg text-neutral-300 leading-relaxed font-sans max-w-2xl mx-auto">
-            Follow our journey on Instagram <span className="text-[#C09A6C] font-semibold">@CoutureClickk</span>
+            Follow our journey on Instagram <span className="text-[#C09A6C] font-semibold">@Uvani</span>
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

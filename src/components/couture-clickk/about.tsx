@@ -113,7 +113,7 @@ export function About() {
                         <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#C09A6C]/10 via-transparent to-transparent" />
                         <Image
                           src={`/about-images/about-img-${num}.jpg`}
-                          alt={`Couture craftsmanship ${num}`}
+                          alt={`Uvani craftsmanship ${num}`}
                           fill
                           className="object-cover object-center transition-all duration-700 ease-out group-hover:scale-105"
                           sizes="(max-width: 768px) 90vw, 440px"
@@ -149,7 +149,7 @@ export function About() {
               variants={itemVariants}
               className="mt-8 text-lg text-neutral-300 leading-relaxed font-sans"
             >
-              Founded in 1924, Uvani represents the pinnacle of artisanal textile craftsmanship. Our atelier brings together master weavers from generations of tradition, creating pieces that embody both heritage and contemporary sophistication.
+              Uvani represents the pinnacle of artisanal textile craftsmanship. Our atelier brings together master weavers from generations of tradition, creating pieces that embody both heritage and contemporary sophistication.
             </motion.p>
             
             {/* Features List */}

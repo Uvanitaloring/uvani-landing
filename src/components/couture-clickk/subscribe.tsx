@@ -33,10 +33,18 @@ export function Subscribe() {
       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-700/15 via-transparent to-transparent rounded-full blur-[90px]" />
 
       <div className="container mx-auto px-4 max-w-2xl text-center relative z-10">
-        <div className="inline-flex items-center justify-center mb-6">
-          <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-          <span className="mx-4 font-medium text-amber-400 tracking-wider">NEWSLETTER</span>
-          <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+            <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+          </span>
+          <span className="text-xs font-sans font-semibold tracking-widest text-[#C09A6C] uppercase">Newsletter</span>
+          <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+            <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+          </span>
         </div>
         <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-neutral-100 mb-4">
           Join The <span className="text-[#C09A6C]">Elite</span>

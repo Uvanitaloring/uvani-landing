@@ -31,7 +31,7 @@ const testimonials = [
   {
     name: 'Isabella Dubois',
     rating: 5,
-    quote: "The attention to detail is simply breathtaking. My gown from Couture Clickk was the star of the evening. Truly a masterpiece of design and craftsmanship.",
+  quote: "The attention to detail is simply breathtaking. My gown from Uvani was the star of the evening. Truly a masterpiece of design and craftsmanship.",
   },
   {
     name: 'Alexander Sterling',

@@ -177,8 +177,8 @@ const Logo = () => (
         <Image
           src="/logo/UVANI logo.png"
           alt="UVANI Logo"
-          width={140}
-          height={120}
+          width={120}
+          height={90}
           className="rounded-lg transition-all duration-700 group-hover:rotate-[5deg] group-hover:brightness-110"
           priority
         />

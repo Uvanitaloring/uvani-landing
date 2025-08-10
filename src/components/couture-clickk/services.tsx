@@ -100,12 +100,22 @@ export function Services() {
           className="text-center max-w-4xl mx-auto mb-16"
           variants={fadeIn}
         >
-          <motion.span 
-            className="inline-block mb-4 text-sm font-sans font-semibold tracking-wider text-[#C09A6C] uppercase"
+          <motion.div 
+            className="flex items-center justify-center gap-4 mb-4"
             variants={itemVariants}
           >
-            Tailoring Excellence
-          </motion.span>
+            <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+              <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            </span>
+            <span className="text-xs font-sans font-semibold tracking-widest text-[#C09A6C] uppercase">Tailoring Excellence</span>
+            <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+              <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            </span>
+          </motion.div>
           
           <motion.h2 
             className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] leading-tight font-medium text-neutral-100"

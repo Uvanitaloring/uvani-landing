@@ -28,8 +28,8 @@ const contactDetails = [
   {
     icon: Mail,
     title: 'Email',
-    detail: 'coutureclick25@gmail.com',
-    href: 'mailto:coutureclick25@gmail.com'
+  detail: 'uvani25@gmail.com',
+  href: 'mailto:uvani25@gmail.com'
   },
   {
     icon: MessageCircle,
@@ -64,9 +64,19 @@ export function Contact() {
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block mb-4 text-sm font-sans font-semibold tracking-wider text-[#C09A6C] uppercase">
-            Get in Touch
-          </span>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+              <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            </span>
+            <span className="text-xs font-sans font-semibold tracking-widest text-[#C09A6C] uppercase">Get in Touch</span>
+            <span className="hidden sm:inline-block relative w-16 h-[2px]" aria-hidden="true">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+              <span className="absolute left-1 top-1/2 -translate-y-1/2 w-14 h-[1px] rounded-full bg-gradient-to-r from-transparent via-[#C09A6C] to-transparent opacity-80" />
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gradient-radial from-[#C09A6C99] to-transparent opacity-70" />
+            </span>
+          </div>
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight font-medium text-white mb-6">
             Let's <span className="text-[#C09A6C] relative inline-block">
               Connect
