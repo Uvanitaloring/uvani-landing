@@ -20,7 +20,7 @@ export function Subscribe() {
   return (
     <section
       id="subscribe"
-      className={`relative overflow-hidden py-24 ${fontSans.variable} ${fontSerif.variable} bg-none`}
+  className={`relative overflow-hidden pt-8 pb-24 ${fontSans.variable} ${fontSerif.variable} bg-none`}
     >
       {/* Elegant Patterned Background */}
       <div className="absolute inset-0 -z-10">

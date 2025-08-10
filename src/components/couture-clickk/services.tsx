@@ -86,7 +86,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className={`py-24 sm:py-32 ${fontSans.variable} ${fontSerif.variable} bg-none`}
+      className={`pt-8 pb-24 sm:pt-10 sm:pb-32 ${fontSans.variable} ${fontSerif.variable} bg-none`}
     >
       <motion.div
         className="container mx-auto px-6 lg:px-8 max-w-7xl"

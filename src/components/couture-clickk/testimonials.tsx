@@ -50,7 +50,7 @@ export function Testimonials() {
     <AnimateWrapper>
       <section
         id="testimonials"
-        className={`relative overflow-hidden py-28 md:py-40 bg-none ${fontSans.variable} ${fontSerif.variable}`}
+  className={`relative overflow-hidden pt-8 pb-28 md:pt-10 md:pb-40 bg-none ${fontSans.variable} ${fontSerif.variable}`}
       >
         {/* Elegant Patterned Background */}
         <div className="absolute inset-0 -z-10">

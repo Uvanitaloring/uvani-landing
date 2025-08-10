@@ -84,7 +84,7 @@ export function About() {
   return (
     <section
       id="about"
-      className={`py-28 sm:py-36 ${fontSans.variable} ${fontSerif.variable} bg-none`}
+  className={`py-16 sm:py-20 ${fontSans.variable} ${fontSerif.variable} bg-none`}
     >
       <motion.div
         className="container mx-auto px-6 lg:px-8 max-w-7xl"

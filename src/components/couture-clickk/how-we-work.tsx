@@ -147,7 +147,7 @@ export default function HowWeWork() {
 
   return (
     // Assuming a dark background, added bg-gray-900 and text-white for standalone visibility
-    <section id="how-it-works" className="relative overflow-hidden py-24 md:py-36 bg-none  text-white">
+  <section id="how-it-works" className="relative overflow-hidden pt-8 pb-24 md:pt-10 md:pb-36 bg-none  text-white">
       {/* Subtle background elements */}
       <div className="absolute inset-0 -z-10 opacity-20">
         {/* Placeholder for background pattern */}

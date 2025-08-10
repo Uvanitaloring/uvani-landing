@@ -49,7 +49,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className={`relative overflow-hidden py-28 md:py-40 ${fontSans.variable} ${fontSerif.variable} bg-none`}
+  className={`relative overflow-hidden pt-8 pb-28 md:pt-10 md:pb-40 ${fontSans.variable} ${fontSerif.variable} bg-none`}
     >
       {/* Subtle Grid Background */}
       <div className="absolute inset-0 -z-10 opacity-10">
