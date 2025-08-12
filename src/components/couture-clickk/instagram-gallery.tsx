@@ -182,7 +182,7 @@ export const InstagramGallery = () => {
         {/* View More Button */}
         <div className="text-center mt-14">
           <a
-            href="https://instagram.com/Uvani"
+            href="https://www.instagram.com/__uvani__/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center font-sans font-medium text-sm sm:text-base px-8 py-3 rounded-full bg-gradient-to-r from-[#1e102d] to-[#0f081b] border border-[#C09A6C]/40 text-[#C09A6C] hover:bg-gradient-to-r hover:from-[#C09A6C]/10 hover:to-[#a37e55]/10 hover:border-[#C09A6C]/70 transition-all duration-300 group shadow-[0_4px_20px_rgba(192,154,108,0.1)] hover:shadow-[0_6px_30px_rgba(192,154,108,0.2)]"
