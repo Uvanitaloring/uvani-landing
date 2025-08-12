@@ -12,33 +12,31 @@ import { WhyChooseUs } from '@/components/couture-clickk/why-choose-us';
 
 export default function CoutureClickkLandingPage() {
   return (
-    <div className="text-foreground flex flex-col min-h-screen">
+    <>
       <Header />
       <Hero />
-      <main className="flex-grow">
-        <AnimateWrapper>
-          <About />
-        </AnimateWrapper>
-        <AnimateWrapper>
-          <Services />
-        </AnimateWrapper>
-        <AnimateWrapper>
-          <HowWeWork />
-        </AnimateWrapper>
-        <AnimateWrapper>
-          <WhyChooseUs />
-        </AnimateWrapper>
-        <Testimonials />
-        <AnimateWrapper>
-          <InstagramGallery />
-        </AnimateWrapper>
-        <AnimateWrapper>
-          <Contact />
-        </AnimateWrapper>
-        <AnimateWrapper>
-          <Subscribe />
-        </AnimateWrapper>
-      </main>
-    </div>
+      <AnimateWrapper>
+        <About />
+      </AnimateWrapper>
+      <AnimateWrapper>
+        <Services />
+      </AnimateWrapper>
+      <AnimateWrapper>
+        <HowWeWork />
+      </AnimateWrapper>
+      <AnimateWrapper>
+        <WhyChooseUs />
+      </AnimateWrapper>
+      <Testimonials />
+      <AnimateWrapper>
+        <InstagramGallery />
+      </AnimateWrapper>
+      <AnimateWrapper>
+        <Contact />
+      </AnimateWrapper>
+      <AnimateWrapper>
+        <Subscribe />
+      </AnimateWrapper>
+    </>
   );
 }

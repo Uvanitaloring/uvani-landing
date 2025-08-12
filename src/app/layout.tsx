@@ -8,7 +8,7 @@ import { Footer } from '@/components/couture-clickk/footer';
 
 
 export const metadata: Metadata = {
-  title: 'Uvani',
+  title: 'Uvani Premium Tailoring Service at Home',
   description: 'Where fashion meets timeless elegance.',
 };
 

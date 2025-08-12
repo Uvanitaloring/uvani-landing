@@ -116,7 +116,7 @@ export function Hero() {
   }, [api]);
 
   return (
-    <section className="relative min-h-[92vh] h-[92vh] md:h-screen w-full flex items-center justify-center text-center text-white overflow-hidden">
+    <section className="relative min-h-[92vh] h-[92vh] sm:h-screen w-full flex items-center justify-center text-center text-white overflow-hidden">
       {/* Background videos with refined crossfade and slight scale for kinetic feel */}
       {['/couture-background.mp4', '/hero-bg.mp4'].map((src, idx) => (
         <motion.video
@@ -159,7 +159,7 @@ export function Hero() {
         transition={{ delay: 0.8, duration: 1.2, ease: easeOutSoft }}
       >
         <motion.div
-          className="w-[56vw] max-w-[780px] h-[56vw] max-h-[780px] rounded-full"
+          className="w-[60vw] sm:w-[56vw] max-w-[780px] h-[60vw] sm:h-[56vw] max-h-[780px] rounded-full"
           style={{
             background:
               'radial-gradient(closest-side, rgba(212,175,55,0.15), rgba(212,175,55,0.05) 40%, transparent 70%)',
@@ -171,7 +171,7 @@ export function Hero() {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-20 p-4 flex flex-col items-center w-full mt-14 md:mt-24 lg:mt-28 overflow-visible">
+      <div className="relative z-20 p-4 flex flex-col items-center w-full mt-12 sm:mt-14 md:mt-24 lg:mt-28 overflow-visible">
         <Carousel
           setApi={setApi}
           opts={{ align: 'start', loop: true }}
@@ -190,18 +190,18 @@ export function Hero() {
                       animate="show"
                       exit="exit"
                       variants={lineVariant}
-                      className="flex flex-col items-center justify-center gap-4"
+                      className="flex flex-col items-center justify-center gap-3 sm:gap-4"
                     >
                       {/* Title block: line entrance + word choreography */}
                       <motion.div variants={containerStagger} custom={0}>
                         <AnimatedText
                           text={m.title}
                           el="h1"
-                          className="font-serif text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white/95 drop-shadow-[0_1px_14px_rgba(0,0,0,0.35)] text-balance text-center break-words w-full px-2 overflow-visible"
+                          className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white/95 drop-shadow-[0_1px_14px_rgba(0,0,0,0.35)] text-balance text-center break-words w-full px-2 overflow-visible"
                         />
                         <motion.span
                           variants={underlineVariant}
-                          className="block mx-auto mt-4 h-[2px] w-[160px] md:w-[220px] bg-gradient-to-r from-[#F1E4B3] via-[#D4AF37] to-[#A47C34] rounded-full"
+                          className="block mx-auto mt-3 sm:mt-4 h-[2px] w-[140px] sm:w-[160px] md:w-[220px] bg-gradient-to-r from-[#F1E4B3] via-[#D4AF37] to-[#A47C34] rounded-full"
                         />
                       </motion.div>
 
@@ -211,7 +211,7 @@ export function Hero() {
                           text={m.subtitle}
                           el="p"
                           delay={0.3}
-                          className="font-sans text-base md:text-xl text-gray-200/90 max-w-2xl leading-relaxed"
+                          className="font-sans text-sm sm:text-base md:text-xl text-gray-200/90 max-w-md sm:max-w-2xl leading-relaxed"
                         />
                       </motion.div>
                     </motion.div>
@@ -227,7 +227,7 @@ export function Hero() {
           <Button
             asChild
             size="lg"
-            className="relative mt-12 group rounded-full text-base font-semibold px-8 py-6 text-black transition-all duration-300"
+            className="relative mt-10 sm:mt-12 group rounded-full text-sm sm:text-base font-semibold px-6 py-5 sm:px-8 sm:py-6 text-black transition-all duration-300"
           >
             <a href="#services">
               <span
@@ -246,14 +246,14 @@ export function Hero() {
               />
               <span className="relative inline-flex items-center">
                 Explore Our Services
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </a>
           </Button>
           {/* CTA shadow aura */}
           <div
             aria-hidden
-            className="mx-auto mt-3 h-6 w-40 rounded-full blur-2xl opacity-50"
+            className="mx-auto mt-3 h-6 w-32 sm:w-40 rounded-full blur-2xl opacity-50"
             style={{
               background:
                 'radial-gradient(50% 50% at 50% 50%, rgba(212,175,55,0.35), transparent)',
@@ -264,7 +264,7 @@ export function Hero() {
 
       {/* Bottom gradient veil to improve lower-contrast content */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-[8]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-28 sm:h-40 z-[8]"
         style={{
           background:
             'linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0))',
