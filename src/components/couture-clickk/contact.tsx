@@ -22,20 +22,20 @@ const contactDetails = [
   {
     icon: Phone,
     title: 'Phone',
-  detail: '+91 96616 88834',
-  href: 'tel:+919661688834'
+    detail: '+91 93048 60958',
+    href: 'tel:+919304860958'
   },
   {
     icon: Mail,
     title: 'Email',
-  detail: 'connectuvani@gmail.com',
-  href: 'mailto:connectuvani@gmail.com'
+    detail: 'connectuvani@gmail.com',
+    href: 'mailto:connectuvani@gmail.com'
   },
   {
     icon: MessageCircle,
     title: 'WhatsApp',
-  detail: '+91 96616 88834',
-  href: 'https://wa.me/919661688834'
+    detail: '+91 93048 60958',
+    href: 'https://wa.me/919304860958'
   },
   {
     icon: MapPin,

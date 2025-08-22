@@ -52,29 +52,33 @@ export const InstagramGallery = () => {
       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-700/20 via-transparent to-transparent rounded-full blur-[90px] animate-float animation-delay-4000" />
       
       {/* Floating Particles */}
-      {useMemo(() => {
-        const particles = Array.from({ length: 15 }).map((_, i) => {
-          // Generate random values once per render
-          const top = Math.random() * 100;
-          const left = Math.random() * 100;
-          const animationDelay = Math.random() * 5;
-          const animationDuration = 3 + Math.random() * 7;
-          const opacity = i % 3 === 0 ? 30 : i % 3 === 1 ? 20 : 10;
-          return (
-            <div
-              key={i}
-              className={`absolute w-1 h-1 rounded-full bg-[#C09A6C] opacity-${opacity} animate-pulse`}
-              style={{
-                top: `${top}%`,
-                left: `${left}%`,
-                animationDelay: `${animationDelay}s`,
-                animationDuration: `${animationDuration}s`,
-              }}
-            />
-          );
-        });
+      {/* Fix hydration error: generate random particles only on client */}
+      {(() => {
+        const [particles, setParticles] = useState<JSX.Element[]>([]);
+        useEffect(() => {
+          const generated = Array.from({ length: 15 }).map((_, i) => {
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            const animationDelay = Math.random() * 5;
+            const animationDuration = 3 + Math.random() * 7;
+            const opacity = i % 3 === 0 ? 30 : i % 3 === 1 ? 20 : 10;
+            return (
+              <div
+                key={i}
+                className={`absolute w-1 h-1 rounded-full bg-[#C09A6C] opacity-${opacity} animate-pulse`}
+                style={{
+                  top: `${top}%`,
+                  left: `${left}%`,
+                  animationDelay: `${animationDelay}s`,
+                  animationDuration: `${animationDuration}s`,
+                }}
+              />
+            );
+          });
+          setParticles(generated);
+        }, []);
         return particles;
-      }, [])}
+      })()}
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* Section Header */}
