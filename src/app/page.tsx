@@ -9,6 +9,7 @@ import { Services } from '@/components/couture-clickk/services';
 import { Subscribe } from '@/components/couture-clickk/subscribe';
 import { Testimonials } from '@/components/couture-clickk/testimonials';
 import { WhyChooseUs } from '@/components/couture-clickk/why-choose-us';
+import DownloadApp from '@/components/couture-clickk/download-app';
 
 export default function CoutureClickkLandingPage() {
   return (
@@ -36,6 +37,14 @@ export default function CoutureClickkLandingPage() {
       </AnimateWrapper>
       <AnimateWrapper>
         <Subscribe />
+      </AnimateWrapper>
+      {/* Download App section placed above the footer */}
+      <AnimateWrapper>
+        <DownloadApp
+          title="Get the UVANI app"
+          description="Download the Android APK directly to install the UVANI beta. iOS support is coming — sign up to be notified when it's available."
+          downloadUrl="/downloads/uvani-latest.apk"
+        />
       </AnimateWrapper>
     </>
   );

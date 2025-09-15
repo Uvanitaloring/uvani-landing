@@ -72,6 +72,59 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="!scroll-smooth">
       <head>
+
+  {/* Favicon */}
+  <link rel="icon" type="image/png" href="https://i.ibb.co/qMrrSt6b/Untitled-design.png" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+
+  {/* Extra SEO Meta Tags */}
+  <meta name="author" content="Shubham Choudhary, Uvani Team" />
+<meta name="copyright" content="Uvani © 2025" />
+<meta name="language" content="English" />
+<meta name="geo.region" content="IN-BR" />
+<meta name="geo.placename" content="Patna" />
+<meta name="geo.position" content="25.5941;85.1376" />
+<meta name="ICBM" content="25.5941, 85.1376" />
+<meta name="revisit-after" content="7 days" />
+
+<meta name="rating" content="5.0" />
+<meta name="application-name" content="Uvani Tailoring Services" />
+<meta name="apple-mobile-web-app-title" content="Uvani Tailoring" />
+<meta name="subject" content="Tailoring and Alteration Services in Patna" />
+<meta name="abstract" content="Uvani provides premium tailoring services at home in Patna, including custom stitching, alterations, men’s & women’s fashion, and bespoke tailoring." />
+<meta name="classification" content="Tailoring, Fashion, Custom Stitching, Alterations, Bespoke Clothing, Patna Tailors" />
+<meta name="distribution" content="India, Bihar, Patna" />
+
+  <meta name="author" content="Shubham Choudhary, Uvani Team" />
+  <meta name="copyright" content="Uvani © 2025" />
+  <meta name="language" content="English" />
+  <meta name="geo.region" content="IN-BR" />
+  <meta name="geo.placename" content="Patna" />
+  <meta name="geo.position" content="25.5941;85.1376" />
+  <meta name="ICBM" content="25.5941, 85.1376" />
+  <meta name="revisit-after" content="7 days" />
+
+  {/* Tailoring-related keyword boost */}
+  <meta name="rating" content="5.0" />
+  <meta name="application-name" content="Uvani Tailoring Services" />
+  <meta name="apple-mobile-web-app-title" content="Uvani Tailoring" />
+  <meta name="subject" content="Tailoring and Alteration Services in Patna" />
+  <meta
+    name="abstract"
+    content="Uvani provides premium tailoring services at home in Patna, including custom stitching, alterations, men’s & women’s fashion, and bespoke tailoring."
+  />
+  <meta
+    name="classification"
+    content="Tailoring, Fashion, Custom Stitching, Alterations, Bespoke Clothing, Patna Tailors"
+  />
+  <meta
+    name="distribution"
+    content="India, Bihar, Patna"
+  />
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         
@@ -90,7 +143,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "name": "Uvani Premium Tailoring Service",
               "description": "Premium tailoring services at your doorstep in Patna. Where fashion meets timeless elegance.",
               "url": "https://uvani.in",
-              "telephone": "+91-9304860958",
+              "telephone": "+91-7091863518",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Patna",
@@ -136,6 +189,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         
         {/* Google Analytics */}
+        
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-7G1EYR6GQ5"
@@ -149,6 +203,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-7G1EYR6GQ5');
+            `,
+          }}
+        />
+        {/* Microsoft Clarity */}
+        <Script
+          id="microsoft-clarity"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "syus9kqiwa");
             `,
           }}
         />

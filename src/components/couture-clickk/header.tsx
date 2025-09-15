@@ -87,7 +87,6 @@ const dropdownMenu: Variants = {
     },
 };
 
-
 // --- Sub-components ---
 const AnimatedHamburgerIcon = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void; }) => {
   const topVariants: Variants = {
@@ -183,6 +182,19 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
+const DownloadIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+    >
+        <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3 17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.2426 21 17.8284 21 15 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+);
+
+
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -195,7 +207,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // This effect is crucial and correctly locks body scroll. Keep it.
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     return () => { document.body.style.overflow = 'auto'; };
@@ -274,7 +285,6 @@ export function Header() {
                     }}
                     transition={{ duration: 0.5 }}
                   />
-                  {/* FIXED UNDERLINE ANIMATION */}
                   <motion.span
                     className="absolute left-1/4 right-0 -bottom-1 h-px origin-left bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
                     initial="initial"
@@ -286,31 +296,25 @@ export function Header() {
               </motion.div>
             ))}
           </motion.nav>
-
+          
+          {/* --- UPDATED DESKTOP BUTTON --- */}
           <motion.div className="hidden lg:block" variants={floatInItem}>
-            <Button
-              variant="outline"
-              className={cn(
-                'relative overflow-hidden border border-[#D4AF37]/30 bg-transparent',
-                'text-[#D4AF37] hover:text-white hover:bg-[#D4AF37]/10',
-                'font-serif uppercase tracking-wider text-xs px-4 py-3 md:px-6 md:py-4',
-                'transition-all duration-500 group'
-              )}
-            >
-              <span className="relative z-10">Book Consultation</span>
-              <motion.span
-                className="absolute inset-0 -z-10 bg-gradient-to-r from-[#D4AF37]/10 via-[#D4AF37]/5 to-[#D4AF37]/10"
-                initial={{ opacity: 0.5 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-              />
-              <motion.span
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37]"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.6, ease: easeInOutExpo }}
-              />
-            </Button>
+             <Button asChild className={cn(
+                'relative overflow-hidden group h-10 sm:w-auto inline-flex items-center justify-center px-6',
+                'bg-gradient-to-b from-[#D4AF37] to-[#B28A48] text-black',
+                'rounded-full font-sans font-semibold text-xs tracking-wide',
+                'transition-all duration-300 ease-out transform',
+                'hover:scale-105 hover:shadow-lg hover:shadow-[#D4AF37]/40',
+                'focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
+                'shadow-md shadow-[#000]/40'
+             )}>
+                <Link href="#">
+                    <DownloadIcon className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-px" />
+                    <span className="transition-transform duration-300 group-hover:-translate-y-px">Get UVANI App</span>
+                     {/* Shimmer Effect */}
+                    <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shimmer" />
+                </Link>
+             </Button>
           </motion.div>
 
           <div className="lg:hidden z-50">
@@ -357,18 +361,21 @@ export function Header() {
                     ))}
                 </nav>
 
+                {/* --- UPDATED MOBILE BUTTON --- */}
                 <motion.div variants={floatInItem} className="w-full mt-6 pt-6 border-t border-[#D4AF37]/20">
-                    <Button
-                        variant="outline"
-                        className={cn(
-                            'w-full relative overflow-hidden border border-[#D4AF37]/50 bg-transparent',
-                            'text-[#D4AF37] hover:text-white hover:bg-[#D4AF37]/20',
-                            'font-serif uppercase tracking-wider text-sm py-4',
-                            'transition-all duration-500'
-                        )}
-                        onClick={() => setIsOpen(false)}
-                    >
-                        Book Consultation
+                     <Button asChild className={cn(
+                        'relative overflow-hidden group h-12 w-full inline-flex items-center justify-center px-6',
+                        'bg-gradient-to-b from-[#D4AF37] to-[#B28A48] text-black',
+                        'rounded-full font-sans font-semibold text-sm tracking-wide',
+                        'transition-all duration-300 ease-out transform',
+                        'active:scale-95',
+                        'focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
+                        'shadow-md shadow-[#000]/40'
+                    )}>
+                        <Link href="#" onClick={() => setIsOpen(false)}>
+                            <DownloadIcon className="mr-2 h-4 w-4" />
+                            <span>Get UVANI App</span>
+                        </Link>
                     </Button>
                 </motion.div>
             </motion.div>
