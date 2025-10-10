@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -87,6 +85,22 @@ const dropdownMenu: Variants = {
     },
 };
 
+// --- UPDATED --- Variant for the download icon animation
+const downloadIconVariants: Variants = {
+  rest: { y: 0, opacity: 1 },
+  hover: {
+    y: [-4, 4],
+    opacity: [0, 1],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+      ease: "circIn",
+      repeatType: 'loop',
+    },
+  },
+};
+
+
 // --- Sub-components ---
 const AnimatedHamburgerIcon = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void; }) => {
   const topVariants: Variants = {
@@ -143,14 +157,13 @@ const AnimatedHamburgerIcon = ({ isOpen, onClick }: { isOpen: boolean; onClick: 
 
 const Logo = () => (
   <motion.div variants={floatInItem} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Link href="/" className="flex items-center group relative">
+    <a href="/" className="flex items-center group relative">
       <div className="relative">
-        <Image
+        <img
           src="https://i.ibb.co/WvkYW6zV/UVANI-logo.png"
           alt="UVANI Logo"
           width={120}
           height={90}
-          priority
           className="h-auto w-20 sm:w-24 lg:w-32 rounded-lg transition-all duration-700 group-hover:rotate-[5deg] group-hover:brightness-110"
         />
         <motion.div
@@ -170,7 +183,7 @@ const Logo = () => (
         animate={{ scale: 1 }}
         transition={{ delay: 0.5, type: 'spring', stiffness: 500 }}
       />
-    </Link>
+    </a>
   </motion.div>
 );
 
@@ -193,6 +206,28 @@ const DownloadIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3 17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.2426 21 17.8284 21 15 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 );
+
+// Right arrow icon used for the 'Book Service' CTA (icon sits to the left of text)
+const RightArrowIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+// Animation for the arrow (subtle nudge right on hover)
+const arrowVariants: Variants = {
+  rest: { x: 0, opacity: 1 },
+  hover: {
+    x: [6, 0, 4, 0],
+    opacity: [0.8, 1],
+    transition: {
+      duration: 1.2,
+      repeat: Infinity,
+      ease: [0.2, 0.85, 0.4, 1],
+      repeatType: 'loop',
+    },
+  },
+};
 
 
 export function Header() {
@@ -269,7 +304,7 @@ export function Header() {
                 onHoverStart={() => setHoveredItem(link.href)}
                 onHoverEnd={() => setHoveredItem(null)}
               >
-                <Link
+                <a
                   href={link.href}
                   className={cn(
                     'group relative px-3 py-2 md:px-4 text-xs md:text-sm font-medium tracking-wider',
@@ -292,29 +327,33 @@ export function Header() {
                     exit="exit"
                     variants={underlineSweep}
                   />
-                </Link>
+                </a>
               </motion.div>
             ))}
           </motion.nav>
           
           {/* --- UPDATED DESKTOP BUTTON --- */}
           <motion.div className="hidden lg:block" variants={floatInItem}>
-             <Button asChild className={cn(
+            <motion.div initial="rest" whileHover="hover" animate="rest">
+              <Button asChild className={cn(
                 'relative overflow-hidden group h-10 sm:w-auto inline-flex items-center justify-center px-6',
-                'bg-gradient-to-b from-[#D4AF37] to-[#B28A48] text-black',
+                'bg-[#C09A6C] text-neutral-900 hover:bg-[#D4B483] hover:text-neutral-900',
                 'rounded-full font-sans font-semibold text-xs tracking-wide',
                 'transition-all duration-300 ease-out transform',
-                'hover:scale-105 hover:shadow-lg hover:shadow-[#D4AF37]/40',
-                'focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
+                'hover:scale-105 hover:shadow-lg hover:shadow-[#C09A6C]/30',
+                'focus-visible:ring-2 focus-visible:ring-[#C09A6C]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
                 'shadow-md shadow-[#000]/40'
-             )}>
-                <Link href="#">
-                    <DownloadIcon className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-px" />
-                    <span className="transition-transform duration-300 group-hover:-translate-y-px">Get UVANI App</span>
-                     {/* Shimmer Effect */}
-                    <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shimmer" />
-                </Link>
-             </Button>
+              )}>
+                <a href="https://uvani-webapp.netlify.app/signup/" target="_blank" rel="noopener noreferrer">
+                  <motion.div variants={arrowVariants} className="mr-2 inline-flex items-center">
+                    <RightArrowIcon className="h-4 w-4" />
+                  </motion.div>
+                  <span className="transition-transform duration-300 group-hover:-translate-y-px">Book Service</span>
+                  {/* Shimmer Effect */}
+                  <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shimmer" />
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
 
           <div className="lg:hidden z-50">
@@ -341,43 +380,47 @@ export function Header() {
             }}
           >
             <motion.div 
-                className="container mx-auto px-4 sm:px-6 py-6"
-                variants={staggerContainer}
-                initial="hidden"
-                animate="show"
-                exit="hidden"
+              className="container mx-auto px-4 sm:px-6 py-6"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
             >
-                <nav className="flex flex-col items-center space-y-4">
-                    {navLinks.map((link) => (
-                        <motion.div key={link.href} variants={floatInItem} className="w-full">
-                            <Link
-                                href={link.href}
-                                className="block w-full text-center font-serif text-lg text-white/90 hover:text-white hover:bg-[#D4AF37]/10 p-3 rounded-lg transition-colors duration-300"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {link.label}
-                            </Link>
-                        </motion.div>
-                    ))}
-                </nav>
+              <nav className="flex flex-col items-center space-y-4">
+                  {navLinks.map((link) => (
+                      <motion.div key={link.href} variants={floatInItem} className="w-full">
+                          <a
+                              href={link.href}
+                              className="block w-full text-center font-serif text-lg text-white/90 hover:text-white hover:bg-[#D4AF37]/10 p-3 rounded-lg transition-colors duration-300"
+                              onClick={() => setIsOpen(false)}
+                          >
+                              {link.label}
+                          </a>
+                      </motion.div>
+                  ))}
+              </nav>
 
-                {/* --- UPDATED MOBILE BUTTON --- */}
-                <motion.div variants={floatInItem} className="w-full mt-6 pt-6 border-t border-[#D4AF37]/20">
-                     <Button asChild className={cn(
-                        'relative overflow-hidden group h-12 w-full inline-flex items-center justify-center px-6',
-                        'bg-gradient-to-b from-[#D4AF37] to-[#B28A48] text-black',
-                        'rounded-full font-sans font-semibold text-sm tracking-wide',
-                        'transition-all duration-300 ease-out transform',
-                        'active:scale-95',
-                        'focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
-                        'shadow-md shadow-[#000]/40'
-                    )}>
-                        <Link href="#" onClick={() => setIsOpen(false)}>
-                            <DownloadIcon className="mr-2 h-4 w-4" />
-                            <span>Get UVANI App</span>
-                        </Link>
-                    </Button>
+              {/* --- UPDATED MOBILE BUTTON --- */}
+              <motion.div variants={floatInItem} className="w-full mt-6 pt-6 border-t border-[#D4AF37]/20">
+                <motion.div initial="rest" whileHover="hover" animate="rest">
+                  <Button asChild className={cn(
+                    'relative overflow-hidden group h-12 w-full inline-flex items-center justify-center px-6',
+                    'bg-[#C09A6C] text-neutral-900 hover:bg-[#D4B483] hover:text-neutral-900',
+                    'rounded-full font-sans font-semibold text-sm tracking-wide',
+                    'transition-all duration-300 ease-out transform',
+                    'active:scale-95',
+                    'focus-visible:ring-2 focus-visible:ring-[#C09A6C]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
+                    'shadow-md shadow-[#000]/40'
+                  )}>
+                      <a href="https://uvani-webapp.netlify.app/signup/" onClick={() => setIsOpen(false)} target="_blank" rel="noopener noreferrer">
+                        <motion.div variants={arrowVariants} className="mr-2 inline-flex items-center">
+                          <RightArrowIcon className="h-4 w-4" />
+                        </motion.div>
+                        <span> Book Service</span>
+                      </a>
+                  </Button>
                 </motion.div>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
@@ -385,3 +428,4 @@ export function Header() {
     </motion.header>
   );
 }
+

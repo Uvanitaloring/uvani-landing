@@ -59,24 +59,24 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="/docs/Privacy%20Policy.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#E0E0E0] hover:text-[#C09A6C] transition-colors duration-300 text-sm font-medium flex items-center justify-center md:justify-start"
-                >
+                <Link href="/privacy-policy" className="text-[#E0E0E0] hover:text-[#C09A6C] transition-colors duration-300 text-sm font-medium flex items-center justify-center md:justify-start">
                   <span className="border-b border-transparent hover:border-[#C09A6C] pb-1">Privacy Policy</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/docs/Terms%20of%20Use.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#E0E0E0] hover:text-[#C09A6C] transition-colors duration-300 text-sm font-medium flex items-center justify-center md:justify-start"
-                >
-                  <span className="border-b border-transparent hover:border-[#C09A6C] pb-1">Terms of Service</span>
-                </a>
+                <Link href="/terms-and-conditions" className="text-[#E0E0E0] hover:text-[#C09A6C] transition-colors duration-300 text-sm font-medium flex items-center justify-center md:justify-start">
+                  <span className="border-b border-transparent hover:border-[#C09A6C] pb-1">Terms &amp; Conditions</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/refund-cancellation" className="text-[#E0E0E0] hover:text-[#C09A6C] transition-colors duration-300 text-sm font-medium flex items-center justify-center md:justify-start">
+                  <span className="border-b border-transparent hover:border-[#C09A6C] pb-1">Refund &amp; Cancellation</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/shipping-policy" className="text-[#E0E0E0] hover:text-[#C09A6C] transition-colors duration-300 text-sm font-medium flex items-center justify-center md:justify-start">
+                  <span className="border-b border-transparent hover:border-[#C09A6C] pb-1">Shipping &amp; Delivery</span>
+                </Link>
               </li>
             </ul>
           </div>

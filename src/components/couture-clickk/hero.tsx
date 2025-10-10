@@ -227,9 +227,9 @@ export function Hero() {
           <Button
             asChild
             size="lg"
-            className="relative mt-10 sm:mt-12 group rounded-full text-sm sm:text-base font-semibold px-6 py-5 sm:px-8 sm:py-6 text-black transition-all duration-300"
+            className="relative mt-10 sm:mt-12 group rounded-full text-sm sm:text-base font-semibold px-6 py-5 sm:px-8 sm:py-6 text-neutral-900 transition-all duration-300"
           >
-            <a href="#services">
+            <a href="https://uvani-webapp.netlify.app/signup/" target="_blank" rel="noopener noreferrer">
               <span
                 className="absolute inset-0 rounded-full -z-10"
                 style={{

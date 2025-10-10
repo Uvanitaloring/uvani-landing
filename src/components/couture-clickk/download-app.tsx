@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownToLine } from 'lucide-react'; // Using lucide-react for a clean icon
+import { useRouter } from 'next/navigation';
 
 type Props = {
   title?: string;
@@ -14,6 +15,7 @@ export default function DownloadApp({
   description = 'Download the official app to book tailoring services, track your orders, and receive exclusive updates.',
   downloadUrl = '#',
 }: Props) {
+  const router = useRouter();
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -33,7 +35,6 @@ export default function DownloadApp({
       filter: 'blur(0px)',
       transition: {
         duration: 0.8,
-        ease: [0.22, 1, 0.36, 1], // A smoother, more elegant ease
       },
     },
   };
@@ -45,7 +46,6 @@ export default function DownloadApp({
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
         delay: 0.3, // Let the text appear first
       },
     },
@@ -84,19 +84,18 @@ export default function DownloadApp({
           {description}
         </motion.p>
 
-        {/* Download Button */}
-        <motion.a
+        {/* Download Button (navigates to /download) */}
+        <motion.button
           variants={buttonVariants}
-          href={downloadUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          type="button"
+          onClick={() => router.push('/download')}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="group relative mt-10 inline-flex items-center justify-center gap-x-2.5 rounded-full bg-gradient-to-b from-[#C9A67A] to-[#A8845A] px-7 py-4 text-base font-medium text-[#181108] shadow-[0_10px_30px_-10px_rgba(192,154,108,0.5)] transition-transform duration-300 ease-out hover:shadow-[0_12px_35px_-10px_rgba(192,154,108,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]"
         >
           <ArrowDownToLine className="h-5 w-5 text-[#181108]/80" />
           Download The App
-          
+
           {/* Shimmer Effect */}
           <span
             aria-hidden="true"
@@ -104,7 +103,7 @@ export default function DownloadApp({
           >
             <span className="absolute inset-0 w-full -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
           </span>
-        </motion.a>
+        </motion.button>
       </div>
     </motion.section>
   );
