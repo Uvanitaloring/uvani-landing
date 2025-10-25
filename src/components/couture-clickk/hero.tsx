@@ -123,6 +123,7 @@ export function Hero() {
           key={src}
           className="absolute inset-0 w-full h-full object-cover z-0"
           src={src}
+          preload="auto"
           autoPlay
           loop
           muted

@@ -161,7 +161,7 @@ export const InstagramGallery = () => {
           
           {/* Instagram CTA Tile */}
           <a 
-            href="https://instagram.com/Uvani" 
+            href="https://www.instagram.com/__uvani__/" 
             target="_blank"
             rel="noopener noreferrer"
             className="aspect-square relative group rounded-xl bg-gradient-to-br from-[#1e102d] to-[#0f081b] border border-purple-900/40 shadow-[0_8px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_50px_rgba(192,154,108,0.3)] backdrop-blur-sm transition-all duration-500 transform hover:-translate-y-1 flex flex-col items-center justify-center p-6 text-center overflow-hidden"
@@ -238,7 +238,7 @@ export const InstagramGallery = () => {
                   </div>
                 </div>
                 <a 
-                  href="https://instagram.com/Uvani" 
+                  href="https://www.instagram.com/__uvani__/" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center text-[#C09A6C] text-sm hover:underline"
