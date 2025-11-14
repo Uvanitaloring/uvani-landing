@@ -67,22 +67,22 @@ const underlineSweep: Variants = {
 
 // Variant for the dropdown container
 const dropdownMenu: Variants = {
-    open: {
-        opacity: 1,
-        y: 0,
-        transition: { 
-            duration: 0.5, 
-            ease: [0.34, 1.3, 0.64, 1] // A bouncy ease
-        },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.34, 1.3, 0.64, 1] // A bouncy ease
     },
-    closed: {
-        opacity: 0,
-        y: "-20%",
-        transition: { 
-            duration: 0.3, 
-            ease: 'easeIn' 
-        },
+  },
+  closed: {
+    opacity: 0,
+    y: "-20%",
+    transition: {
+      duration: 0.3,
+      ease: 'easeIn'
     },
+  },
 };
 
 // --- UPDATED --- Variant for the download icon animation
@@ -196,15 +196,15 @@ const navLinks = [
 ];
 
 const DownloadIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-    >
-        <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3 17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.2426 21 17.8284 21 15 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3 17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.2426 21 17.8284 21 15 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
 );
 
 // Right arrow icon used for the 'Book Service' CTA (icon sits to the left of text)
@@ -331,37 +331,57 @@ export function Header() {
               </motion.div>
             ))}
           </motion.nav>
-          
+
           {/* --- UPDATED DESKTOP BUTTON --- */}
           <motion.div className="hidden lg:block" variants={floatInItem}>
             <motion.div initial="rest" whileHover="hover" animate="rest">
-              <Button asChild className={cn(
-                'relative overflow-hidden group h-10 sm:w-auto inline-flex items-center justify-center px-6',
-                'bg-[#C09A6C] text-neutral-900 hover:bg-[#D4B483] hover:text-neutral-900',
-                'rounded-full font-sans font-semibold text-xs tracking-wide',
-                'transition-all duration-300 ease-out transform',
-                'hover:scale-105 hover:shadow-lg hover:shadow-[#C09A6C]/30',
-                'focus-visible:ring-2 focus-visible:ring-[#C09A6C]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
-                'shadow-md shadow-[#000]/40'
-              )}>
-                <a href="https://uvani-webapp.netlify.app/signup/" target="_blank" rel="noopener noreferrer">
+              <Button
+                asChild
+                className={cn(
+                  'relative overflow-hidden group h-11 sm:w-auto inline-flex items-center justify-center px-8',
+                  'rounded-full font-sans font-semibold text-sm tracking-wide',
+                  'transition-all duration-300 ease-out transform',
+                  'hover:scale-[1.07] hover:shadow-xl hover:shadow-[#D4AF37]/40',
+                  'focus-visible:ring-2 focus-visible:ring-[#D4AF37]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+                  'shadow-md shadow-black/40 text-black'
+                )}
+                style={{
+                  background:
+                    'linear-gradient(145deg, #F7DFA7 0%, #D4AF37 35%, #C4962C 65%, #9A6E1F 100%)',
+                }}
+              >
+                <a
+                  href="https://uvani-lite.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-10 flex items-center"
+                >
                   <motion.div variants={arrowVariants} className="mr-2 inline-flex items-center">
                     <RightArrowIcon className="h-4 w-4" />
                   </motion.div>
-                  <span className="transition-transform duration-300 group-hover:-translate-y-px">Book Service</span>
-                  {/* Shimmer Effect */}
-                  <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shimmer" />
+
+                  <span className="transition-transform duration-300 group-hover:-translate-y-px">
+                    Try Uvani Now
+                  </span>
+
+                  {/* Enhanced Shimmer Effect */}
+                  <div
+                    className="absolute top-0 left-0 -translate-x-full group-hover:translate-x-[200%]
+          h-full w-2/3 bg-gradient-to-r from-transparent via-white/50 to-transparent
+          opacity-40 skew-x-[-20deg] transition-transform duration-[1200ms]"
+                  />
                 </a>
               </Button>
             </motion.div>
           </motion.div>
+
 
           <div className="lg:hidden z-50">
             <AnimatedHamburgerIcon isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
           </div>
         </motion.div>
       </div>
-      
+
       {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -373,13 +393,13 @@ export function Header() {
             exit="closed"
             className="absolute top-full left-0 w-full lg:hidden"
             style={{
-                background: 'rgba(8, 8, 31, 0.95)',
-                backdropFilter: 'blur(16px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(16px) saturate(180%)',
-                borderTop: '1px solid rgba(212, 175, 55, 0.2)'
+              background: 'rgba(8, 8, 31, 0.95)',
+              backdropFilter: 'blur(16px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+              borderTop: '1px solid rgba(212, 175, 55, 0.2)'
             }}
           >
-            <motion.div 
+            <motion.div
               className="container mx-auto px-4 sm:px-6 py-6"
               variants={staggerContainer}
               initial="hidden"
@@ -387,17 +407,17 @@ export function Header() {
               exit="hidden"
             >
               <nav className="flex flex-col items-center space-y-4">
-                  {navLinks.map((link) => (
-                      <motion.div key={link.href} variants={floatInItem} className="w-full">
-                          <a
-                              href={link.href}
-                              className="block w-full text-center font-serif text-lg text-white/90 hover:text-white hover:bg-[#D4AF37]/10 p-3 rounded-lg transition-colors duration-300"
-                              onClick={() => setIsOpen(false)}
-                          >
-                              {link.label}
-                          </a>
-                      </motion.div>
-                  ))}
+                {navLinks.map((link) => (
+                  <motion.div key={link.href} variants={floatInItem} className="w-full">
+                    <a
+                      href={link.href}
+                      className="block w-full text-center font-serif text-lg text-white/90 hover:text-white hover:bg-[#D4AF37]/10 p-3 rounded-lg transition-colors duration-300"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  </motion.div>
+                ))}
               </nav>
 
               {/* --- UPDATED MOBILE BUTTON --- */}
@@ -412,12 +432,12 @@ export function Header() {
                     'focus-visible:ring-2 focus-visible:ring-[#C09A6C]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
                     'shadow-md shadow-[#000]/40'
                   )}>
-                      <a href="https://uvani-webapp.netlify.app/signup/" onClick={() => setIsOpen(false)} target="_blank" rel="noopener noreferrer">
-                        <motion.div variants={arrowVariants} className="mr-2 inline-flex items-center">
-                          <RightArrowIcon className="h-4 w-4" />
-                        </motion.div>
-                        <span> Book Service</span>
-                      </a>
+                    <a href="https://uvani-webapp.netlify.app/signup/" onClick={() => setIsOpen(false)} target="_blank" rel="noopener noreferrer">
+                      <motion.div variants={arrowVariants} className="mr-2 inline-flex items-center">
+                        <RightArrowIcon className="h-4 w-4" />
+                      </motion.div>
+                      <span> Book Service</span>
+                    </a>
                   </Button>
                 </motion.div>
               </motion.div>

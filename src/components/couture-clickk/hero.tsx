@@ -228,38 +228,51 @@ export function Hero() {
           <Button
             asChild
             size="lg"
-            className="relative mt-10 sm:mt-12 group rounded-full text-sm sm:text-base font-semibold px-6 py-5 sm:px-8 sm:py-6 text-neutral-900 transition-all duration-300"
+            className="relative mt-10 sm:mt-12 group rounded-full px-9 py-6 text-lg font-semibold text-black
+               transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]
+               shadow-[0_6px_22px_rgba(212,175,55,0.45)]"
           >
-            <a href="/lite" rel="noopener noreferrer">
+            <a
+              href="https://uvani-lite.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-10 flex items-center gap-3"
+            >
+              Try Uvani Now
+              <ArrowRight className="h-5 w-5 transition-all duration-300 group-hover:translate-x-1" />
+
+              {/* Gold Background */}
               <span
-                className="absolute inset-0 rounded-full -z-10"
+                className="absolute inset-0 -z-10 rounded-full"
                 style={{
                   background:
-                    'linear-gradient(90deg, #D4AF37 0%, #C8A13A 35%, #A47C34 100%)',
+                    "linear-gradient(145deg, #F7DFA7 0%, #D4AF37 35%, #C4982A 65%, #A0751F 100%)",
                 }}
               />
+
+              {/* Inner Glow */}
               <span
-                className="absolute inset-0 rounded-full -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="absolute inset-0 -z-10 rounded-full opacity-0 group-hover:opacity-100 transition duration-300"
                 style={{
                   background:
-                    'radial-gradient(120% 120% at 20% 20%, rgba(255,255,255,0.35), transparent 40%)',
+                    "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 50%)",
                 }}
               />
-              <span className="relative inline-flex items-center">
-                Explore Our Services
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
             </a>
           </Button>
+
+          {/* Soft golden ground reflection */}
           <div
             aria-hidden
-            className="mx-auto mt-3 h-6 w-32 sm:w-40 rounded-full blur-2xl opacity-50"
+            className="mx-auto mt-4 h-8 w-44 blur-2xl opacity-40 rounded-full"
             style={{
               background:
-                'radial-gradient(50% 50% at 50% 50%, rgba(212,175,55,0.35), transparent)',
+                "radial-gradient(circle, rgba(212,175,55,0.55), transparent 70%)",
             }}
           />
         </motion.div>
+
+
 
       </div>
 
