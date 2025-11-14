@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, ArrowRight } from 'lucide-react';
 import { Playfair_Display, Sora } from 'next/font/google';
 
 // --- Font Setup ---
@@ -119,6 +119,30 @@ export function Contact() {
             </div>
 
           </div>
+          {/* Redirect to Uvani Lite CTA */}
+<div className="mt-6 sm:mt-8 text-center">
+  <Button
+    asChild
+    size="lg"
+    className="h-11 sm:h-12 group relative px-8 font-bold text-neutral-900 rounded-full
+               bg-gradient-to-r from-[#F7DFA7] via-[#D4AF37] to-[#A47C34]
+               hover:scale-105 transition-all duration-300 shadow-lg shadow-amber-500/20"
+  >
+    <a
+      href="https://uvani-lite.netlify.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2"
+    >
+      Try Uvani Lite
+      <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+    </a>
+  </Button>
+  <p className="text-xs text-neutral-400 mt-2">
+    Experience our fast & modern tailoring ordering system.
+  </p>
+</div>
+
 
           {/* Contact Form */}
           <Card className="p-6 sm:p-10 bg-gradient-to-b from-[#1e102d]/70 to-[#0f081b]/70 border border-[#3A1D6A] shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_48px_rgba(113,0,255,0.3)] backdrop-blur-xl transition-all duration-500 rounded-2xl overflow-hidden flex flex-col justify-between max-h-[500px] min-h-[390px]">
@@ -178,6 +202,7 @@ export function Contact() {
                 <span className="relative z-10">Send Message</span>
               </Button>
             </form>
+            
           </Card>
         </div>
       </div>

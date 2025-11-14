@@ -423,24 +423,48 @@ export function Header() {
               {/* --- UPDATED MOBILE BUTTON --- */}
               <motion.div variants={floatInItem} className="w-full mt-6 pt-6 border-t border-[#D4AF37]/20">
                 <motion.div initial="rest" whileHover="hover" animate="rest">
-                  <Button asChild className={cn(
-                    'relative overflow-hidden group h-12 w-full inline-flex items-center justify-center px-6',
-                    'bg-[#C09A6C] text-neutral-900 hover:bg-[#D4B483] hover:text-neutral-900',
-                    'rounded-full font-sans font-semibold text-sm tracking-wide',
-                    'transition-all duration-300 ease-out transform',
-                    'active:scale-95',
-                    'focus-visible:ring-2 focus-visible:ring-[#C09A6C]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
-                    'shadow-md shadow-[#000]/40'
-                  )}>
-                    <a href="https://uvani-webapp.netlify.app/signup/" onClick={() => setIsOpen(false)} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    asChild
+                    className={cn(
+                      'relative overflow-hidden group h-12 w-full inline-flex items-center justify-center px-7',
+                      'rounded-full font-sans font-semibold text-sm tracking-wide text-neutral-900',
+                      'transition-all duration-300 ease-out transform',
+                      'hover:scale-[1.04] active:scale-[0.97]',
+                      'focus-visible:ring-2 focus-visible:ring-[#D4AF37]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08081f]',
+                      'shadow-lg shadow-black/40'
+                    )}
+                    style={{
+                      background:
+                        'linear-gradient(145deg, #F7DFA7 0%, #D4AF37 35%, #C4962C 65%, #9A6E1F 100%)',
+                    }}
+                  >
+                    <a
+                      href="https://uvani-lite.netlify.app/"
+                      onClick={() => setIsOpen(false)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative z-10 flex items-center"
+                    >
                       <motion.div variants={arrowVariants} className="mr-2 inline-flex items-center">
                         <RightArrowIcon className="h-4 w-4" />
                       </motion.div>
-                      <span> Book Service</span>
+
+                      <span className="transition-transform duration-300 group-hover:-translate-y-px">
+                        Try Uvani Now
+                      </span>
+
+                      {/* Golden shimmer */}
+                      <div
+                        className="absolute top-0 left-0 h-full w-2/3 bg-gradient-to-r from-transparent 
+                     via-white/40 to-transparent opacity-0 group-hover:opacity-100 
+                     transform -skew-x-12 -translate-x-full group-hover:translate-x-[150%] 
+                     transition-all duration-[1100ms]"
+                      />
                     </a>
                   </Button>
                 </motion.div>
               </motion.div>
+
             </motion.div>
           </motion.div>
         )}
