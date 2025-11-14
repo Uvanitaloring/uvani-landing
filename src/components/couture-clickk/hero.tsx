@@ -230,7 +230,7 @@ export function Hero() {
             size="lg"
             className="relative mt-10 sm:mt-12 group rounded-full text-sm sm:text-base font-semibold px-6 py-5 sm:px-8 sm:py-6 text-neutral-900 transition-all duration-300"
           >
-            <a href="https://uvani-webapp.netlify.app/signup/" target="_blank" rel="noopener noreferrer">
+            <a href="/lite" rel="noopener noreferrer">
               <span
                 className="absolute inset-0 rounded-full -z-10"
                 style={{
@@ -251,7 +251,6 @@ export function Hero() {
               </span>
             </a>
           </Button>
-          {/* CTA shadow aura */}
           <div
             aria-hidden
             className="mx-auto mt-3 h-6 w-32 sm:w-40 rounded-full blur-2xl opacity-50"
@@ -261,6 +260,7 @@ export function Hero() {
             }}
           />
         </motion.div>
+
       </div>
 
       {/* Bottom gradient veil to improve lower-contrast content */}

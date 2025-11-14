@@ -1,0 +1,13 @@
+{
+    "rewrites": [
+      {
+        "source": "/lite",
+        "destination": "https://uvani-lite.netlify.app"
+      },
+      {
+        "source": "/lite/:path*",
+        "destination": "https://uvani-lite.netlify.app/:path*"
+      }
+    ]
+  }
+  
